@@ -1,0 +1,59 @@
+@import '../../../sass/config/settings';
+
+.proto-outer-container {
+	margin: 20px 30px 20px 30px;
+}
+
+.proto-main-container {
+	margin: 0 auto;
+}
+
+.form-container {
+	width: 200px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+
+.data-loading {
+	padding: 0 0 20px 0;
+	text-align: center;
+	color: rgba(0, 0, 0, .42);
+
+	span {
+		display: inline-block;
+		position: relative;
+		top: 4px;
+	}
+}
+
+.heatmap-wrapper {
+    display: flex;
+    position: fixed;
+
+    // Must be higher than the z-index of the header(400) but lower than cdk-overlay (1000)
+    z-index: 500;
+    background: $white;
+
+    // Styling weirdness to make it look as if it is part of the header
+    width: calc(100% - 293px);
+    margin-left: -23px;
+    box-shadow: 0px 4px 6px rgb(0 0 0 / 5%);
+    height: 188px;
+    padding: 15px 0 5px 0;
+    border-top: 0.7px solid $gray300;
+}
+
+.heatmap-row {
+    // from the heatmap component
+    height: 200px;
+    width: 100%;
+}
+
+.heatmap-row-item {
+    width: 50%;
+    height: 100%;
+}
+
+.rhythm-page-ecg-list {
+    padding-top: 180px;
+}

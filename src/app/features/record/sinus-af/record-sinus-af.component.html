@@ -1,0 +1,34 @@
+
+<div class="sinusaf-container">
+
+	<!-- SINUS PROGRESS -->
+	<div class="sinusaf-row">
+
+		<div class="sinusaf-text">
+			Sinus: {{recordDto.metrics.sinusPercentage | number:'1.0-0'}}%
+		</div>
+
+		<div class="sinusaf-progress-outer">
+			<div
+				class="sinusaf-progress-inner"
+				[style.width]="(recordDto.metrics.sinusPercentage | number:'1.0-0') + '%'">
+			</div>
+		</div>
+	</div>
+
+	<!--  PROGRESS -->
+	<div class="sinusaf-row">
+
+		<div class="sinusaf-text">
+			AF: {{recordDto.metrics.afPercentage | number:'1.0-0'}}%
+		</div>
+
+		<div class="sinusaf-progress-outer">
+			<div
+				class="sinusaf-progress-inner"
+				[style.width]="(recordDto.metrics.afPercentage | number:'1.0-0') + '%'">
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,108 @@
+@import '../../../../../../../sass/main';
+
+
+.strip-ms-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 500;
+    color: $black;
+    padding: 0 0 0 26px;
+
+    .strip-ms-border {
+        font-size: 0;
+        height: 10px;
+        border-top: 2px solid $black;
+        border-left: 2px solid $black;
+        border-right: 2px solid $black;
+        width: 83px;
+    }
+
+    .strip-ms-text {
+        font-size: 12px;
+        margin: 0 0 0 7px;
+    }
+}
+
+.strip-mm-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 500;
+    color: $black;
+    font-size: 12px;
+    padding: 0 15px 0 0;
+}
+
+.ecg-strip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    border: 1px solid $gray200;
+}
+
+.ecg-strip-nonscrollable {
+    background: transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: calc(100% - 6.4px);
+}
+
+.ecg-strip-scrollable {
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 100%;
+}
+
+.ecg-strip-scrollable-content {
+    position: relative;
+    height: 100%;
+}
+
+.ecg-canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+}
+
+.ecg-lines-image {
+    display: block;
+    height: 100%;
+}
+
+
+.parent-strip {
+    .ecg-strip-scrollable {
+        overflow-x: hidden;
+    }
+}
+
+.child-strip {
+    margin: 0 0 8px 0;
+}
+
+.ecg-canvas, .ecg-lines-image {
+    height: 100%;
+    width: 100%;
+}
+
+.tag-container{
+    z-index: 400;
+    position: absolute;
+    margin: 2px 0px 0px 2px;
+}
+
+.tag{
+    padding: 4px 12px;
+    background: $gray100;
+    border-radius: 152px;
+    font-weight: normal;
+    font-size: 12px;
+    margin-right: 5px
+}

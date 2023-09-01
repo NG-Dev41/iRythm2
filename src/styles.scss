@@ -1,0 +1,572 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@include mat.core();
+@import '@angular/material/theming';
+@import 'app/sass/main';
+@import 'app/sass/config/flexbox-grid';
+
+$tqa-indigo-palette: (
+        50 : #e7e7f7,
+        100 : #c3c3ec,
+        200 : #9b9ce0,
+        300 : #7374d3,
+        400 : #5556c9,
+        500 : #3738c0,
+        600 : #3132ba,
+        700 : #2a2bb2,
+        800 : #2324aa,
+        900 : #16179c,
+        A100 : #d0d1ff,
+        A200 : #9d9eff,
+        A400 : #6a6bff,
+        A700 : #5152ff,
+        contrast: (
+            50 : #000000,
+            100 : #000000,
+            200 : #000000,
+            300 : #ffffff,
+            400 : #ffffff,
+            500 : #ffffff,
+            600 : #ffffff,
+            700 : #ffffff,
+            800 : #ffffff,
+            900 : #ffffff,
+            A100 : #000000,
+            A200 : #000000,
+            A400 : #ffffff,
+            A700 : #ffffff,
+        )
+);
+
+
+$my-primary: mat.define-palette($tqa-indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme((
+        color: (
+                primary: $my-primary,
+                accent: $my-accent,
+                warn: $my-warn,
+        )
+));
+
+$buch-typeography: mat.define-typography-config(
+        $font-family: 'SoehneWebBuch'
+);
+
+$leight-typography: mat.define-typography-config(
+        $font-family: 'SoehneWebLeicht'
+);
+
+
+@include angular-material-typography($leight-typography);
+
+@include mat.core-theme($my-theme);
+@include mat.button-theme($my-theme);
+
+html, body {
+	height: 100%;
+	-webkit-font-smoothing: antialiased;
+}
+
+// -- START PILL BADGES --------------------------------------
+.pill {
+    border-radius: 16px;
+    padding: 5px 12px 4px 12px;
+    color: $midnight;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.grey-pill {
+    background: rgba(209, 213, 215, 0.45);
+}
+
+.red-pill {
+    background: rgba(240, 60, 45, 0.2);
+}
+
+.yellow-pill {
+    background: rgba(255, 185, 65, 0.35);
+}
+
+.blue-pill {
+    background-color: $sky200;
+}
+// -- END PILL BADGES--------------------------------------
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+// ---------------------------------
+// Main Sidebar
+// ---------------------------------
+#sidebar-container {
+	background-color: #172D3A; // TODO: Color
+
+	// Sidebar Opened
+	&.open {
+		width: 271px;
+	}
+
+	// Sidebar closed
+	&.close {
+		width: 64px;
+
+		.hide-on-close {
+			visibility: hidden;
+		}
+	}
+
+	// Sidebar Divider Line
+	.sidebar-divider {
+		font-size: 0;
+		height: 2px;
+		line-height: 2px;
+		background-color: #4966A2;
+		color: #4966A2;
+		margin: 0 24px;
+	}
+
+	// Sidebar Section (Record Type, Steps, Patient Info, Etc...)
+	.sidebar-section {
+		margin: 0 0 20px 0;
+
+		.sidebar-section-header {
+			text-transform: uppercase;
+			font-size: 14px;
+			color: #4966A2; // TODO: Color
+			margin: 0 28px 17px 28px;
+		}
+
+		.sidebar-section-content {
+			color: $white
+		}
+
+		&.sidebar-section-record-type, &.sidebar-section-patient-info {
+			.sidebar-section-content {
+				margin: 0 0 0 36px;
+			}
+		}
+	}
+
+	// Sidebar Section Steps/Navigation
+	.sidebar-section-steps {
+
+		a {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			height: 43px;
+			color: #9E9E9E; // TODO: Color
+			text-decoration: none;
+			padding: 0 0 0 36px;
+
+			&:hover, &.active {
+				background-color: #2B414E;
+				color: $white;
+			}
+		}
+	}
+
+	// Sidebar Section Patient Info
+	.sidebar-section-patient-info {
+		margin: 20px 0;
+
+		.data-section {
+			margin: 0 0 16px 0;
+
+			&:last-child {
+				margin: 0;
+			}
+		}
+
+		.data-label {
+			font-size: 12px;
+			color: #9E9E9E;
+			margin: 0 0 4px 0;
+		}
+	}
+}
+
+
+
+// Cards (See global.scss)
+.card-container {
+
+	// Card Header
+	.card-header {
+		font-size: 24px;
+		border-bottom: 1px solid #E0E0E0;
+		padding: 28px 0 20px 36px;
+	}
+}
+
+
+
+// Main Content
+.main-content-inner-container {
+	padding: 35px 18px;
+}
+
+
+
+// MDN Page
+.mdn-content-container {
+	.mdn-content-left {
+		width: 556px;
+		max-width: 556px;
+		@include flex(1, 0, 556px);
+	}
+
+	.mdn-content-right {
+		width: calc(100% - 556px);
+		padding: 0 0 0 24px;
+	}
+
+	.card-content {
+		padding: 16px 20px;
+	}
+
+	.data-section {
+		display: flex;
+		font-size: 18px;
+		padding: 12px 18px;
+
+		&.highlight {
+			@include border-radius(6px);
+			background: rgba(235, 219, 255, 0.3);
+		}
+	}
+
+	.data-label {
+		color: #555555;
+		width: 220px;
+		min-width: 220px;
+	}
+
+	.record-account-info {
+		.data-label {
+			width: 264px;
+			min-width: 264px;
+		}
+	}
+
+	.record-notification-criteria {
+
+		padding: 16px 20px;
+
+		.criteria-row {
+			display: flex;
+			margin: 0 0 20px 0;
+
+			&:last-child {
+				margin: 0;
+			}
+		}
+
+		.criteria-card {
+			background: #F5F5F5;
+			width: 50%;
+			padding: 24px;
+
+			&.highlight {
+				background: #F9F4FF;
+			}
+
+			&:first-child {
+				margin: 0 20px 0 0;
+			}
+
+			.title {
+				font-size: 18px;
+				margin: 0 0 12px 0;
+			}
+
+			.description {
+				font-size: 16px;
+				margin: 0 0 16px 0;
+			}
+
+			.notification {
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+
+.mat-mdc-tooltip {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    margin-top: -3px;
+
+    .mdc-tooltip__surface {
+        padding-top: 8px;
+        height: 100%;
+        line-height: 18px;
+        margin: 0 !important;
+        max-width: 100% !important;
+        --mdc-plain-tooltip-container-color: white;
+        --mdc-plain-tooltip-supporting-text-color: $midnight;
+        --mdc-plain-tooltip-supporting-text-font: 'SoehneWebBuch';
+        --mdc-plain-tooltip-supporting-text-size: 14px;
+    }
+}
+
+.mat-mdc-tooltip-panel{
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.2)) drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.15));
+}
+
+// tooltip arrow
+// tooltip panel appears below
+.mat-mdc-tooltip-panel-below {
+    &::after {
+        width: 0;
+        height: 0;
+        content: '';
+        position: absolute;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid white;
+        overflow: initial;
+        margin-top: 0;
+        top: -7px;
+        right: calc(50% - 0.5rem);
+        transform: rotate(0);
+    }
+}
+// tooltip panel appears above
+.mat-mdc-tooltip-panel-above {
+    &::after {
+        margin-top: 0;
+        width: 0;
+        height: 0;
+        content: '';
+        position: absolute;
+        border-left: 0.5rem solid transparent;
+        border-right: 0.5rem solid transparent;
+        border-bottom: 0.5rem solid white;
+        overflow: initial;
+        margin-bottom: 0;
+        bottom: -0.5rem;
+        right: calc(50% - 0.5rem);
+        transform: rotate(180deg);
+    }
+}
+
+// Misc
+
+// Apply to an empty div to make it a circle. Circle will still need a background color
+.circle {
+    height: 12px;
+    width: 12px;
+    min-width: 12px;
+    min-height: 12px;
+    border-radius: 100%;
+}
+
+.orange-circle {
+    background: #F56652;
+}
+
+.blue-circle {
+    background: $indigo;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.mat-dialog-container, .mat-menu-panel {
+    background: white;
+}
+
+.mat-dialog-container {
+    border-radius: 16px !important;
+    //padding: 42px !important;
+}
+
+.mat-menu-panel {
+    border-radius: 10px;
+}
+
+
+.header-options-panel-position{
+    top: 15px;
+}
+
+
+
+
+// material menus this should be added via the 'class' attribute for mat-menu
+div.app-mat-menu {
+    z-index:100;
+    border-radius: 8px;
+
+    .split-menu-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        .split-menu-item__text.active {
+            background: $menu-item-hover-background;
+            color: $indigo;
+        }
+
+        &:hover {
+            .split-menu-item__text {
+                background: $menu-item-hover-background;
+                color: $indigo;
+            }
+        }
+
+        &__text {
+            padding: 0px 40px 0px 16px;
+            border-right: 1px solid $gray400;
+            font-family: Söhne;
+            font-size: 14px;
+            font-weight: 400;
+            color: $gray700;
+            background: none;
+            border-radius: 0;
+            height: 34px;
+        }
+
+        &__trigger {
+            width: auto;
+            padding-right: 24px;
+        }
+
+
+    }
+
+    &.mark-consultation-menu {
+        margin-top: 51px;
+        margin-left: -174px;
+    }
+
+    &.mark-consultation-menu-header-options {    
+        margin-top: 42px;
+        margin-left: -174px;
+    }
+
+    .mark-as-consult.mat-menu-panel {
+        min-height: auto;
+    }
+
+    .mat-mdc-menu-submenu-icon {
+        visibility: hidden;
+    }
+
+    // maintain right chevron indigo color while hovering over icon and 'mark as consultation'
+    .mat-mdc-menu-item:hover:not([disabled]),
+    .mat-mdc-menu-item.cdk-program-focused:not([disabled]),
+    .mat-mdc-menu-item.cdk-keyboard-focused:not([disabled]),
+    .mat-mdc-menu-item-highlighted:not([disabled]) mat-icon {
+        color: $indigo;
+        .mdc-list-item__primary-text {            
+            color: $indigo;
+        }
+    }
+    .mat-mdc-menu-item {
+        min-height: 34px;
+    }
+
+    // maintain lavender background of menu right arrow when hovering over 'mark as consultation'
+    .mat-mdc-menu-item:hover:not([disabled]),
+    .mat-mdc-menu-item.cdk-program-focused:not([disabled]),
+    .mat-mdc-menu-item.cdk-keyboard-focused:not([disabled]),
+    .mat-mdc-menu-item-highlighted:not([disabled]) {
+        background: $menu-item-hover-background;
+    }
+
+    .mat-menu-item-hover {
+        .mdc-list-item__primary-text {
+            color: $indigo;           
+        }
+        background: $menu-item-hover-background;
+    }
+
+}
+// Material Menu variable overrides
+html {
+    span {
+        --mat-menu-item-label-text-size: 14px;
+    }
+}
+
+
+// Right click menu built on top of mat-menu
+.right-click-menu {
+    padding: 8px 0;
+    margin: 0;
+    font-family: SoehneWebLeicht;
+    size: 14px;
+    border-radius: 8px;
+    color: rgba(50, 62, 72, 1);
+    max-width: 100% !important;
+
+    .right-click-menu-item {
+        padding: 0 16px;
+        background: transparent;
+        height: 18px;
+
+        &:hover {
+            color: #3738C0;
+            background: $menu-item-hover-background;
+
+            p {
+                color: #3738C0;
+            }
+
+            &:focus, &:active {
+                background: $menu-item-hover-background;
+            }
+        }
+
+        &:focus, &:active {
+            background: transparent;
+        }
+
+        .bottom-right-click-menu-item {
+            padding-bottom: 16px;
+        }
+
+        span {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 64px;
+            width: 100%;
+        }
+    }
+
+    .disabled-right-click-menu-item {
+        color: rgba(0, 0, 0, 0.35)
+    }
+
+    .destructive-right-click-menu-item {
+        color: rgba(240, 60, 45, 1);
+    }
+}
+
+// Panel Class Leave for leave modal
+.leave {
+    .mat-mdc-dialog-container .mdc-dialog__surface{
+        border-radius: 16px;
+    }
+}
+

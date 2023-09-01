@@ -1,0 +1,33 @@
+<h1>Change Priority to MDN</h1>
+
+<mat-dialog-content>
+
+    <p>Please confirm or indicate the reason(s) for changing the priority to MDN.</p>
+
+    <section class="checkbox-container" [formGroup]="mdnCheckboxesObject">
+        <mat-checkbox
+            *ngFor="let reason of mdnReasons"
+            [formControlName]="reason"
+            color="primary">
+            {{reason}}
+        </mat-checkbox>
+    </section>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="button-container-row">
+
+    <button
+        class="btn-tertiary btn-md"
+        mat-dialog-close>
+        Cancel
+    </button>
+
+    <button
+        class="btn-primary btn-md"
+        (click)="submitMdnReasons()"
+        mat-dialog-close>
+        Save
+    </button>
+
+</mat-dialog-actions>

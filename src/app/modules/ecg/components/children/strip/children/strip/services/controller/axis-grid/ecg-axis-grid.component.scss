@@ -1,0 +1,19 @@
+
+.ecg-axis-vertical-grid-line {
+    position: absolute;
+    top: 0;
+    z-index: 200;
+    cursor: default;
+    font-size: 0;
+    opacity: .3;
+}
+
+.ecg-axis-horizontal-grid-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    cursor: default;
+    font-size: 0;
+    opacity: .3;
+}

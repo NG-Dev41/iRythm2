@@ -1,0 +1,19 @@
+<button
+    class="ecg-action-expand-menu"
+    [matMenuTriggerFor]="configMenu">
+    <mat-icon>more_horiz</mat-icon>
+</button>
+
+<mat-menu #configMenu yPosition="above" xPosition="after">
+    <!--matMenuContent defers menu content initialization until menu is opened -->
+    <ng-template matMenuContent>
+        <!-- <ng-container *ngFor="let id of config.ct.actionMenu.actionIds">
+            <app-ecg-convert-sinus
+                *ngIf="id === ecgComponentKey.CONVERT_SINUS">
+            </app-ecg-convert-sinus>
+            <app-ecg-gain
+                *ngIf="id === ecgComponentKey.GAIN">
+            </app-ecg-gain>
+        </ng-container> -->
+    </ng-template>
+</mat-menu>

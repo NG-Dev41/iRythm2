@@ -1,0 +1,22 @@
+@import 'app/sass/main';
+
+.btn-new-tab {
+    background: none;
+    padding: 0;
+}
+
+.icon-new-tab {
+    color: $midnight;
+}
+
+.approve-btns-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.header-border-line {
+    border-right: 1px solid $gray300;
+    margin-right: 10px;
+    padding-right: 10px;
+    height: 26px;
+}

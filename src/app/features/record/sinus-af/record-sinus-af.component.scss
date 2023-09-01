@@ -1,0 +1,33 @@
+@import '../../../sass/config/settings';
+
+.sinusaf-container {
+	margin: 0 20px 18px 20px;
+	padding: 0 0 20px 0;
+	border-bottom: 1px solid $gray500;
+}
+
+.sinusaf-row {
+	margin: 0 0 16px 0;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.sinusaf-text {
+	font-size: 16px;
+	color: #fff;
+	margin-bottom: 9px;
+}
+
+.sinusaf-progress-outer {
+	background-color: #2C3F4B;
+	width: 100%;
+	border-radius: 50px;
+}
+
+.sinusaf-progress-inner {
+	height: 7px;
+	background-color: #fff;
+	border-radius: 50px;
+}

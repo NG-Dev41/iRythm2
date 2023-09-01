@@ -1,0 +1,35 @@
+
+
+
+<div class="col-container">
+
+    <div class="left-col">
+        &nbsp;
+    </div>
+
+    <div class="right-col">
+
+        <div class="header-bar">
+            <span class="header-title">
+                Trace Queue
+            </span>
+        </div>
+
+        <div class="main-content">
+
+            <div class="app-productivity-dashboard-container">
+
+                <h1 class="queue-header"> Hi, {{ userDto.id }}</h1>
+                <app-productivity-dashboard></app-productivity-dashboard>
+            </div>
+
+            <div
+                *ngIf="queueService.loadState == ComponentLoadState.LOADED"
+                class="queue-container">
+
+                <app-in-progress-table></app-in-progress-table>
+                <app-on-hold-table></app-on-hold-table>
+            </div>
+        </div>
+    </div>
+</div>

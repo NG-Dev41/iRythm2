@@ -1,0 +1,18 @@
+<!-- TODO: The PSI Container gets in the way of canvas events (Because it overlays the canvas) -->
+<div
+    *ngIf="controller.componentLoadState == EcgComponentState.READY"
+    class="ecg-psi-container"
+    [style.display]="(config.ct.global.numValidEpisodes > 1) ? 'flex' : 'none'"
+    [style.left]="stripConfig.ct.primaryEpisodeIndicator.leftX + 'px'">
+
+    <div class="ecg-psi-inner-container">
+        <div class="ecg-psi-text smooth-16">
+            Strip Episode
+        </div>
+        <div
+            class="ecg-psi-border"
+            [style.width]="this.stripConfig.ct.primaryEpisodeIndicator.width + 'px'">
+            &nbsp;
+        </div>
+    </div>
+</div>

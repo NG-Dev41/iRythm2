@@ -1,0 +1,33 @@
+<div
+	*ngIf="httpError"
+	class="error">
+	{{httpError}}
+</div>
+
+<div class="info-section">
+	<h5>
+		WebApp Info
+	</h5>
+	<div class="app-version">
+	    <span class="label">Version:</span> <span class="value">%%VERSION%%</span>
+	</div>
+	<div>
+		<span class="label">Env:</span>&nbsp;{{environment.name}}
+	</div>
+</div>
+
+<div class="info-section">
+	<h5>
+		Server Info
+	</h5>
+	<div *ngIf="serverInfo">
+		<div>
+			<span class="label">Build Number:</span>
+			<span class="value">{{serverInfo.buildNumber}}</span>
+		</div>
+		<div>
+			<span class="label">Version:</span>
+			<span class="value">{{serverInfo.version}}</span>
+		</div>
+	</div>
+</div>

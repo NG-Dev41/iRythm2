@@ -1,0 +1,62 @@
+<table mat-table [dataSource]="patchNotificationCriteria" class="patch-notification-table">
+
+    <!-- Arrhythmia Column -->
+    <ng-container matColumnDef="arrhythmiaType">
+        <th mat-header-cell *matHeaderCellDef> ARRYTHMIA TYPE </th>
+        <td mat-cell *matCellDef="let notificationCriteriaRow">
+            <div [ngClass]="{'bolded-row': notificationCriteriaRow.bolded}">
+                {{notificationCriteriaRow.arrhythmiaType}}
+            </div>
+        </td>
+    </ng-container>
+
+    <!-- Criteria Column -->
+    <ng-container matColumnDef="criteria">
+        <th mat-header-cell *matHeaderCellDef> CRITERIA </th>
+        <td mat-cell *matCellDef="let notificationCriteriaRow" [ngClass]="{'bolded-row': notificationCriteriaRow.bolded}">
+            <div class="flex-row" [ngClass]="{'bolded-row': notificationCriteriaRow.bolded}">
+
+                <ng-template [ngIf]="notificationCriteriaRow.criteria">
+                    <div *ngIf="notificationCriteriaRow.bolded" class="circle blue-circle"></div>
+                    {{notificationCriteriaRow.criteria}}
+                </ng-template>
+
+                <ng-template [ngIf]="!notificationCriteriaRow.criteria">
+                    N/A
+                </ng-template>
+
+            </div>
+        </td>
+    </ng-container>
+
+    <!-- Notification Column -->
+    <ng-container matColumnDef="notification">
+        <th mat-header-cell *matHeaderCellDef> NOTIFICATION </th>
+        <td mat-cell *matCellDef="let notificationCriteriaRow">
+            <div [ngClass]="{'bolded-row': notificationCriteriaRow.bolded}">
+                {{notificationCriteriaRow.notification}}
+            </div>
+        </td>
+    </ng-container>
+
+    <!-- Detected Column -->
+    <ng-container matColumnDef="detectedReason">
+        <th mat-header-cell *matHeaderCellDef> DETECTED </th>
+        <td mat-cell *matCellDef="let notificationCriteriaRow" [ngClass]="{'bolded-row': notificationCriteriaRow.bolded}">
+            <div class="flex-row" [ngClass]="{'bolded-row': notificationCriteriaRow.bolded}">
+
+                <ng-template [ngIf]="notificationCriteriaRow.detectedReason">
+                    <div class="circle orange-circle"> </div> {{notificationCriteriaRow.detectedReason}}
+                </ng-template>
+
+                <ng-template [ngIf]="!notificationCriteriaRow.detectedReason">
+                    Not detected
+                </ng-template>
+
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table-row"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
+</table>

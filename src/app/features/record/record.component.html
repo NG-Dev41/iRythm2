@@ -1,0 +1,39 @@
+<div *ngIf="isLoading | async" class="loader-spinner-overlay">
+	<app-loading-spinner [loadingText]="loadingMessage | async"></app-loading-spinner>
+</div>
+
+<div class="col-container">
+
+    <div class="left-col">
+
+		<ng-container *ngIf="loadState == ComponentLoadState.LOADED">
+			<app-record-sidebar id="recordSidebar"></app-record-sidebar>
+		</ng-container>
+
+    </div>
+
+    <div class="right-col">
+
+		<div class="header-bar">
+			<ng-container *ngIf="loadState == ComponentLoadState.LOADED">
+				<app-record-header class="record-header"></app-record-header>
+			</ng-container>
+		</div>
+
+		<div class="main-content">
+			<ng-container *ngIf="loadState == ComponentLoadState.LOADED">
+				<router-outlet></router-outlet>
+			</ng-container>
+		</div>
+
+    </div>
+
+    <div class="right-col right-col-overlay"  #rightColumnOverlay *ngIf="shouldShowModal" (click)="shouldShowModal = false">
+        <app-right-col-multi-line-modal
+                #rightColMultilineModal
+                *ngIf="activeModalType === RightColModalType.MULTILINE_STRIP_MODAL"
+                [initProperties]="modalInitProperties"
+                (click)="$event.stopPropagation()">
+        </app-right-col-multi-line-modal>
+    </div>
+</div>

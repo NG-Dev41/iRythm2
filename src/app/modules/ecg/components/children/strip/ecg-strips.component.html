@@ -1,0 +1,11 @@
+
+<ng-container *ngFor="let stripConfig of config?.ct?.strips?.parentStrips">
+    <div
+        (click)="selectEcgCard($event)"
+        class="strips-container"
+        [ngClass]="(config.ct.viewType == EcgViewType.ADDITIONAL_STRIP) ? 'additional-strips-container' : ''">
+        <app-ecg-strip-group
+            [config]="stripConfig">
+        </app-ecg-strip-group>
+    </div>
+</ng-container>

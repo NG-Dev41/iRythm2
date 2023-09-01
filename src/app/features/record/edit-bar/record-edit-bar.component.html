@@ -1,0 +1,11 @@
+<div class="edit-bar-wrapper">
+    <app-record-paint-rhythms></app-record-paint-rhythms>
+
+    <div (mousedown)="preventBlurEvent($event)">
+        <app-record-mark-ectopy></app-record-mark-ectopy>
+    </div>
+
+    <div (mousedown)="preventBlurEvent($event)">
+        <app-record-hr-bar-actions></app-record-hr-bar-actions>
+    </div>
+</div>

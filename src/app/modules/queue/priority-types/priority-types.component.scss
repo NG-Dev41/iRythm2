@@ -1,0 +1,11 @@
+.parent{
+    display: flex;
+}
+.pill {
+    margin-right: 8px;
+    justify-content: space-between;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}

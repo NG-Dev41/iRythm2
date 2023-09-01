@@ -1,0 +1,30 @@
+@import '../../../sass/config/_settings.scss';
+
+
+.record-undo-icon {
+    height: 18px;
+    width: 18px;
+}
+
+.record-undo-dropdown-icon {
+    height: 100%;
+    width: 12px;
+    margin-bottom: 7px;
+}
+
+
+.record-header-undo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 6px;
+}
+
+.header-undo-button {
+    background: none;
+    padding: 0;
+}
+
+.menu-item-page{
+    color: $gray450;
+}

@@ -1,0 +1,91 @@
+
+<!--
+	TODO: Acess dto directly if possible
+-->
+<div class="ecg-info-container">
+
+
+<ul class="ecg-info">
+	<li>
+		<span>
+			Duration
+		</span>
+        {{controller.dto.data.episode.episodeDuration}}
+	</li>
+
+	<li>
+		<span>
+			Beats
+		</span>
+        {{controller.dto.data.episode.beats}}
+	</li>
+
+<!-- show rates if not in active edit session -->
+    <ng-container *ngIf="!isSelected">
+
+	<li>
+		<span>
+			Min HR
+		</span>
+		{{controller.dto.data.episode.minHR}}
+	</li>
+
+    <li>
+		<span>
+			Max HR
+		</span>
+        {{controller.dto.data.episode.maxHR}}
+    </li>
+
+	<li>
+		<span>
+			Avg HR
+		</span>
+		{{controller.dto.data.episode.averageHR}}
+	</li>
+    </ng-container>
+
+<!--    if activeStrip, show loading icon -->
+    <ng-container *ngIf="isSelected">
+
+        <li>
+            <span>
+                Min HR
+            </span>
+            <img class="loading-icon" src="./assets/img/icons/icon-park_loading-one.svg">
+        </li>
+
+        <li>
+            <span>
+                Max HR
+            </span>
+            <img class="loading-icon" src="./assets/img/icons/icon-park_loading-one.svg">
+        </li>
+
+        <li>
+            <span>
+                Avg HR
+            </span>
+            <img class="loading-icon" src="./assets/img/icons/icon-park_loading-one.svg">
+        </li>
+    </ng-container>
+<!--end icon change-->
+
+	<li>
+		<span>
+			Confidence
+		</span>
+		{{ controller.dto.data.episode.confidence | percent }}
+	</li>
+</ul>
+
+<ng-container *ngIf="ecgCardConfig.data.sortTypes.length">
+    <div class="tag-container">
+        <span
+            class="tag"
+            *ngFor="let sortType of ecgCardConfig.data.sortTypes">
+            {{ sortType | displaySortType | translate }} <ng-container *ngIf="sortType === RhythmSortType.MDN">{{controller.dto.data.episode.mdNotification}}</ng-container>
+        </span>
+    </div>
+</ng-container>
+</div>

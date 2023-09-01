@@ -1,0 +1,26 @@
+@import '../../../sass/config/settings';
+
+
+.productivity-dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 810px;
+    height: 80px;
+    padding: 0 40px;
+
+    border-radius: 160px;
+    background: rgba(236, 238, 239, 0.75);
+}
+
+.records-completed-container, .total-review-time-container, .average-time-container {
+    font-family: SoehneWebBuch;
+     display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: $gray700;
+}
+
+.text-bold {
+    font-family: SoehneWebKraftig;
+}

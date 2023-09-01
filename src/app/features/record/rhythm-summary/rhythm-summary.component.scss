@@ -1,0 +1,53 @@
+@import '../../../sass/config/settings';
+
+.rhythm-summary-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 0 16px 0 19px;
+}
+
+.rhythm-summary-title {
+    font-family: 'SoehneWebKraftig';
+    font-size: 18px;
+    color: $gray700;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.rhythm-statistics-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.rhythm-statistic {
+    display: flex;
+    flex-direction: column;
+}
+
+.statistic-title {
+    font-family: 'SoehneWebBuch';
+    font-size: 18px;
+    color: #565151;
+    margin-bottom: 5px;
+}
+
+.statistic-data {
+    font-family: 'SoehneWebBuch';
+    font-size: 28px;
+    color: black;
+    margin-top: 0px;
+}
+
+.rhythm-summary-note {
+    font-family: 'SoehneWebKraftig';
+    font-size: 12px;
+    color: black;
+    margin-top: 0px;
+}
+
+

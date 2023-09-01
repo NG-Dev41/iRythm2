@@ -1,0 +1,29 @@
+
+<ng-container *ngIf="controller.componentLoadState == EcgComponentState.READY">
+
+    <div class="strip-group-container">
+
+        <!-- Child/Mini Windows -->
+        <ng-container *ngIf="ecgConfig.ct.viewType !== EcgViewType.ADDITIONAL_STRIP">
+
+            <div class="child-strip-container" *ngIf="stripConfig.width">
+                <app-ecg-strip
+                    *ngFor="let childConfig of stripConfig.children"
+                    [cssContainerClass]="'child-strip'"
+                    [config]="childConfig">
+                </app-ecg-strip>
+            </div>
+
+        </ng-container>
+
+        <!-- Parent/Primary Window -->
+        <div class="parent-strip-container">
+            <app-ecg-strip
+                [cssContainerClass]="'parent-strip'"
+                [config]="stripConfig">
+            </app-ecg-strip>
+        </div>
+
+    </div>
+
+</ng-container>

@@ -1,0 +1,184 @@
+@import '../../sass/config/settings';
+
+.queue-table {
+    table-layout: fixed;
+    width: 100%;
+    background: $white;
+    color: $gray700;
+    border-radius: 4px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    overflow: hidden;
+    margin-bottom: 35px;
+
+    th, td {
+        padding: 20px 15px;
+    }
+
+    th {
+        font-family: SoehneWebBuch;
+        color: $gray600;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    td {
+        border-top: 1px solid rgba(0, 0, 0, .12);
+        font-size: 16px;
+    }
+
+    // Table Row Hover
+    tbody {
+        tr {
+            background: $white;
+            &:hover {
+                background: rgba(55, 56, 192, 0.03);
+            }
+        }
+    }
+}
+
+.queue-table-hover {
+    background: $white;
+
+    &:hover {
+        td {
+            color: $indigo;
+        }
+    }
+}
+
+.disable-hover-effect {
+    background: $white !important;
+
+    &:hover {
+        background: rgba(55, 56, 192, 0.03) !important;
+
+        td {
+            color: $indigo !important;
+        }
+    }
+}
+
+.options-flexbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 11px;
+}
+
+.table-header {
+    font-family: 'SoehneWebLeicht';
+    font-size: 22px;
+    color: $gray700;
+    line-height: 28.6px;
+}
+
+.warning-left-border td:first-child {
+    border-left: 4px solid #F03C2D;
+}
+
+.more-than-two-days-container {
+    color: #F03C2D;
+    display: flex;
+    align-items: bottom;
+    gap: 10px;
+    size: 16px;
+
+    div {
+        position: relative;
+        top: 1px;
+    }
+}
+
+
+.add-new-record-row {
+
+    td {
+        text-align: center;
+        color: $gray700;
+        font-size: 18px;
+
+        div:first-child {
+            padding-bottom: 16px;
+        }
+    }
+}
+
+.no-records-text {
+    font-size: 18px;
+    color: $gray700;
+}
+
+.add-new-record-button {
+    font-family: 'SoehneWebBuch';
+    background: transparent;
+    font-size: 16px;
+    color: $indigo;
+    margin: 14px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:disabled {
+        color: rgba(0, 0, 0, 0.35);
+        text-decoration: none;
+    }
+}
+
+.sohne-buch-18 {
+    font-family: SoehneWebBuch;
+    font-size: 18px;
+}
+
+.sohne-buch-16{
+    font-family: SoehneWebBuch;
+    font-size: 16px;
+}
+
+// ------------------------------------------------------------------------------------------------------------------
+
+
+// TODO: Check the code out below
+
+/*
+    TODO: Is this the standard styling for mat-menu-trigger?
+    If so move to includes
+ */
+.options-menu-trigger {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 17px;
+    padding: 2px 7px 0px 7px;
+
+    &:hover {
+        border: 1px solid rgba(55, 56, 192, 1);
+    }
+}
+
+// for use when menu is opened
+.opened{
+    border: 1px solid rgba(55, 56, 192, 1);
+}
+
+
+.small-icon-button {
+    color: $gray700;
+    background-color: $white;
+    width: 36px !important;
+    height: 28px !important;
+    line-height: 0px !important;
+
+    .mat-icon {
+        width: 20px !important;
+        height: 20px !important;
+        line-height: 18px !important;
+    }
+
+    .material-icons {
+        font-size: 20px !important;
+    }
+}
+

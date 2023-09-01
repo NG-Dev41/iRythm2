@@ -1,0 +1,46 @@
+<!-- TQA Logo -->
+<!-- Turn on do not commit flag to prevent edit session from committing when user navigates away-->
+<app-logo
+    (mousedown)="sessionEditService.doNotCommit = true"
+></app-logo>
+
+
+<!-- Tabs to switch between navigation sidebar and edit tools sidebar -->
+<!--
+	TODO: Would probably be cleaner to make a pipe that determines the active tab. Would be cleaner. 4 Instances
+-->
+<div class="sidebar-tabs">
+
+
+	<div
+		class="sidebar-tab"
+		[ngClass]="(recordDto.sidebar.activeTab == SidebarTab.NAVIGATION) ? 'active-tab' : ''"
+        (click)="sidebarService.switchTabs(SidebarTab.NAVIGATION)">
+        Navigation
+    </div>
+
+	<div
+		class="sidebar-tab"
+		[ngClass]="(recordDto.sidebar.activeTab == SidebarTab.EDIT) ? 'active-tab' : ''"
+        (click)="sidebarService.switchTabs(SidebarTab.EDIT)">
+        Edit
+    </div>
+</div>
+
+<!-- Navigation Sidebar -->
+<div
+	class="sidebar-content"
+    [ngClass]="{ 'disable-content': isLoading | async, 'active-content': (recordDto.sidebar.activeTab == SidebarTab.NAVIGATION) }">
+
+    <app-record-sinus-af></app-record-sinus-af>
+    <app-record-navigation></app-record-navigation>
+</div>
+
+<!-- Edit Tools Sidebar -->
+<div
+	class="sidebar-content"
+	[ngClass]="(recordDto.sidebar.activeTab == SidebarTab.EDIT) ? 'active-content' : ''">
+
+    <!-- Rhythm Selection Paint Bar -->
+    <app-ecg-edit-bar></app-ecg-edit-bar>
+</div>

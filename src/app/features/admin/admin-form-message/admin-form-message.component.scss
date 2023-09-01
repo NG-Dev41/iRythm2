@@ -1,0 +1,35 @@
+.admin-message {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 3.719rem;
+    border: 2px solid;
+    border-radius: 4px;
+   margin-bottom: 1.34375em;
+size: .875rem;
+    font-weight: bold;
+}
+
+.default {
+    color: #427eb0;
+    background-color: #cde9f7;
+    border-color: #427eb030;
+}
+
+.error {
+    color: #b32e26;
+    background-color: #e9c3c0;
+    border-color: #b32e2636;
+}
+
+.success {
+    color: #4d7e40;
+    background-color: #cef3d7;
+    border-color: #b5ecc3;
+}
+
+.warn {
+    color: #97712c;
+    background-color: #f8f4c4;
+    border-color: #97712c12;
+}

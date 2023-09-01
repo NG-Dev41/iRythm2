@@ -1,0 +1,43 @@
+<div class="reason-modal">
+
+    <h4 mat-dialog-title>Send Record to Full QA</h4>
+
+    <div mat-dialog-content>
+
+        <h5 class="subtitle">Please indicate the reasons for sending the record to Full QA. Select all that apply.</h5>
+
+        <form
+            [formGroup]="form"
+            novalidate>
+
+            <ng-container
+                formArrayName="reasonList"
+                *ngFor="let reason of reasonsFormArray.controls; let i = index">
+
+                <p>
+                    <mat-checkbox
+                        [formControlName]="i"
+                        color="primary">
+                        {{ reasons[i] }}
+                    </mat-checkbox>
+                </p>
+            </ng-container>
+        </form>
+    </div>
+
+    <mat-dialog-actions align="end">
+
+        <button
+            class="btn-primary btn-md"
+            mat-dialog-close>
+            Cancel
+        </button>
+
+        <button class="btn-primary btn-md"
+            mat-dialog-close
+            (click)="sendBack()"
+            [disabled]="!form.valid">
+            Send
+        </button>
+    </mat-dialog-actions>
+</div>

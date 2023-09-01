@@ -1,0 +1,54 @@
+<!-- Disable Overlay Div -->
+<div [disableOverlay]="recordDto.sidebar.rhythmsDisabled">
+
+    <span class="edit-title">Paint Rhythms</span>
+
+
+    <ng-container *ngFor="let rhythmType of RhythmType | keyvalue : editBarUtils.returnZero">
+
+        <div class="edit-link-container">
+            <ng-container
+                *ngIf="RhythmTypeMeta[rhythmType.value].paintRhythm">
+
+        <!--Calling preventDefault() on mousedown will prevent the "onBlur" event from firing on the strip,
+           this prevents the section from becoming disabled while user interacts with it-->
+                <div
+                    class="edit-bar-button"
+                    (click)="selectRhythmType(rhythmType.value)"
+                    (mousedown)="$event.preventDefault()">
+
+                    <!-- Colored Square -->
+                    <div class="rectangle-container">
+                        <div
+                            class="rectangle"
+                            [style.background]="editBarUtils.getRectangleColor(RhythmTypeMeta, rhythmType.value)">
+                        </div>
+                    </div>
+
+                    <div class="edit-bar-button-text"
+                         *ngIf="!(rhythmType.value | checkEctopicPatterns)">
+                        {{RhythmTypeMeta[rhythmType.value].name ? RhythmTypeMeta[rhythmType.value].name : rhythmType.value}}
+                    </div>
+
+                    <div class="edit-bar-button-text" *ngIf="rhythmType.value | checkEctopicPatterns">
+                        {{RhythmTypeMeta[rhythmType.value].abbreviation ? RhythmTypeMeta[rhythmType.value].abbreviation : rhythmType.value}}
+                    </div>
+
+                    <!-- Bubble to display counts, pipe hides counts for Artifact & Sinus -->
+                        <span class="bubble"
+                        *ngIf="(RecordMetricType.RHYTHMS | hideCountBubble : rhythmType.value : recordDto.metrics) > 0">
+                            {{RecordMetricType.RHYTHMS | recordMetric : rhythmType.value : recordDto.metrics}}
+                        </span>
+
+                    <div class="divider"></div>
+
+                    <!-- Displays Keyboard Shortcut -->
+                    <span
+                        class="shortcut"
+                        [innerHTML]="rhythmType.value | recordKeyboardShortcut : RhythmTypeMeta">
+                    </span>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+</div>

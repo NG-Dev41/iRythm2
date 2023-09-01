@@ -1,0 +1,9 @@
+export enum IRHYTHM_COLORS {
+	LIGHT_GREY = '#edeff0',
+	GREY = '#323E48',
+	SUCCESS_GREEN = '#49905C',
+	WARNING_YELLOW = '#FFB941',
+	ERROR_RED_TEXT = '#FC032D',
+	ERROR_RED_BG = 'rgb(252, 3, 45, .1)',
+    WARNING_YELLOW_BG = 'rgba(247, 235, 171, 0.45)'
+}

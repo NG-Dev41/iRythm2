@@ -1,0 +1,98 @@
+
+<ng-container *ngIf="ecgListController.componentLoadState == EcgComponentState.READY">
+
+    <!-- an hidden div is created to set the position of appearance of the menu-->
+    <div #contextMenuTrigger="matMenuTrigger"
+        style="visibility: hidden; position: fixed;"
+         [style.left]="menuTopLeftPosition.x"
+         [style.top]="menuTopLeftPosition.y"
+         [matMenuTriggerFor]="rightMenu"></div>
+
+    <!-- standard material menu -->
+    <mat-menu
+            class="right-click-menu keystroke-gap"
+            #rightMenu="matMenu">
+
+        <button mat-menu-item
+                class="right-click-menu-item"
+                *ngIf="rhythmsDto.sortType === RhythmSortType.SLOWEST && ecgListController.contextMenuIntervals.size === 1"
+                (click)="ecgListController.makeEpisodeTheSlowest()">
+                    <p> Select Slowest </p>
+                    <p> Keystroke </p>
+        </button>
+
+        <button mat-menu-item
+                class="right-click-menu-item"
+                *ngIf="rhythmsDto.sortType === RhythmSortType.FASTEST && ecgListController.contextMenuIntervals.size === 1"
+                (click)="ecgListController.makeEpisodeTheFastest()">
+                    <p> Select Fastest </p>
+                    <p> Keystroke </p>
+        </button>
+
+        <button
+                mat-menu-item
+                class="right-click-menu-item"
+                (click)="ecgListController.markEpisodesAsSinus()">
+                    <p> Convert {{ecgListController.contextMenuIntervals.size}} as Sinus </p>
+                    <p> Keystroke </p>
+        </button>
+
+        <button mat-menu-item
+                class="right-click-menu-item"
+                (click)="ecgListController.markEpisodesAsArtifact()">
+                    <p> Convert {{ecgListController.contextMenuIntervals.size}} as Artifact </p>
+                    <p> Keystroke </p>
+        </button>
+
+    </mat-menu>
+
+
+    <!-- TILE VIEW -->
+    <div *ngIf="recordDto.ecgListLayoutType == EcgLayoutType.TILE">
+
+        <div class="ecg-tile-view-container">
+
+            <ng-container *ngFor="let ecgCardConfig of ecgListController.ecgCards; let i = index">
+
+                <app-ecg-list-row
+                    *ngIf="i == 0 || (i + 1) % 3 === 0"
+                    [initProperties]="ecgCardConfig"
+                    [startingIndex]="i">
+                </app-ecg-list-row>
+
+            </ng-container>
+        </div>
+    </div>
+
+
+    <!-- LIST/LONG VIEW -->
+    <div *ngIf="recordDto.ecgListLayoutType == EcgLayoutType.LIST">
+
+        <div class="ecg-long-view-container">
+
+            <ng-container
+                *ngFor="let ecgCardConfig of ecgListController.ecgCards; let i = index"
+                class="ecg-card-wrapper">
+
+                <!--
+                    <app-ecg-test-bed
+                            *ngIf="ecgCardConfig"
+                            [initProperties]="ecgCardConfig">
+                    </app-ecg-test-bed>
+                             -->
+
+                    <app-ecg2
+                        *ngIf="ecgCardConfig"
+                        [initProperties]="ecgCardConfig">
+                    </app-ecg2>
+            </ng-container>
+        </div>
+    </div>
+
+</ng-container>
+
+
+<!-- LOADING STATE -->
+<ng-container *ngIf="ecgListController.componentLoadState == EcgComponentState.LOADING">
+    Loading Data
+</ng-container>

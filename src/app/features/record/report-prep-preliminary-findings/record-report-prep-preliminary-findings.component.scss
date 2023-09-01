@@ -1,0 +1,183 @@
+@import '../../../sass/config/settings';
+
+
+.report-findings-container {
+    margin: 20px 0 0 0;
+    background: $white;
+    padding: 20px 40px;
+    box-shadow: 0px 0px 10px $form-box-shadow;
+    border-radius: 4px;
+}
+
+.report-finding {
+    padding: 5px 12px;
+    border: 1px solid $gray400;
+    margin: 0 0 6px 0;
+    border-radius: 4px;
+    color: $black;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid $gray300;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.finding-textarea {
+    resize: none;
+    overflow: hidden;
+    border: none;
+    width: 100%;
+    color: $black;
+    background-color: $white;
+
+    disabled {
+        color: $black;
+    }
+}
+
+.report-finding-non-editable {
+    margin: 0;
+}
+
+.finding-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.report-findings-search-wrapper {
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    border-radius: 160px;
+    background: $gray100;
+    width: 100%;
+    border: 1px solid $gray100;
+
+    &:focus-within {
+        background: $white;
+        border: 1px solid $indigo;
+    }
+}
+
+.report-findings-input {
+    background: none;
+    size: 16px;
+    padding-left: 8px;
+    width: 100%;
+    height: 100%;
+    height: 40px;
+    color: $gray500;
+    border: none;
+
+    &:hover {
+        background: none;
+    }
+}
+
+.report-findings-form-field {
+    width: 100%;
+    border-radius: 160px;
+
+    &:focus {
+        background: $white;
+    }
+}
+
+.report-findings-delete-finding-icon {
+    cursor: pointer;
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+}
+
+.report-findings-reorder-icon {
+    width: 12px;
+    margin-top: -6px;
+}
+
+.report-findings-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: none;
+    border-top: .8px solid $gray400;
+    box-shadow: none;
+    padding-top: 19px;
+}
+
+.report-findings-close-button {
+    margin-right: 9px;
+    padding: 9px 9px 6px 9px;
+    border-radius: 100%;
+    background-color: $form-accent-gray;
+}
+
+.editable-finding-wrapper {
+    border: 1px solid $indigo;
+}
+
+.non-editable-finding-wrapper {
+    padding-left: 12px;
+    border: 1px solid $gray300;
+}
+
+.non-user-defined-wrapper {
+    margin-left: 20px;
+}
+
+::ng-deep {
+    .mat-mdc-text-field-wrapper {
+        background-color: $indigo;
+        border-radius: 160px;
+    }
+
+    .mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
+        border-radius: 160px
+    }
+
+    .mdc-text-field--filled:not(.mdc-text-field--disabled){
+        background-color: $gray100;
+        border: 1px solid $gray100;
+    }
+
+    .mdc-text-field--filled:not(.mdc-text-field--disabled):focus-within {
+        background-color: $white;
+        border: 1px solid $indigo;
+    }
+
+    .mat-mdc-form-field:hover .mat-mdc-form-field-focus-overlay {
+        opacity: 0;
+    }
+
+    .mat-mdc-form-field-focus-overlay, .mdc-line-ripple {
+        display: none;
+    }
+
+    .mdc-text-field--focused {
+        background-color: $white;
+        border: 1px solid $indigo;
+    }
+
+    div.mat-mdc-autocomplete-panel {
+        overflow: hidden !important;
+        margin-top: 4px;
+        border-radius: 8px;
+    }
+
+    .cdk-overlay-pane:not(.mat-mdc-autocomplete-panel-above) div.mat-mdc-autocomplete-panel {
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+    }
+
+
+    .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+        color: $indigo;
+
+        .mat-mdc-option-ripple {
+            background-color: $menu-item-hover-background;
+        }
+    }
+}

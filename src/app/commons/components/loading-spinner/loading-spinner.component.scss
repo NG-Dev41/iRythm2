@@ -1,0 +1,29 @@
+@import '../../../sass/config/settings';
+
+.loading-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-text {
+    font-family: Söhne;
+    font-size: 22px;
+    line-height: 33px;
+    color: $white;
+}
+
+.loading-spinner {
+    animation: spin 2.5s linear infinite;
+    width: 80px;
+    height: 80px;
+    z-index: 5;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

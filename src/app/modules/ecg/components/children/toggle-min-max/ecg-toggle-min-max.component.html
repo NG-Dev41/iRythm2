@@ -1,0 +1,8 @@
+<ng-container *ngIf="controller.componentLoadState === EcgComponentState.READY">
+    <div>
+        <button class="btn-neutral"
+                (click)="controller.toggleSplitView()">
+            {{config.ct.toggleMinMax.view}}
+        </button>
+    </div>
+</ng-container>

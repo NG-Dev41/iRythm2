@@ -1,0 +1,59 @@
+
+<ng-container *ngIf="controller.componentLoadState == EcgComponentState.READY">
+
+    <!-- Left Arrow -->
+    <div
+        #leftArrow
+        class="ecg-nav-arrow ecg-left-nav-arrow"
+        [style.height]="config.ct.line.height + 'px'"
+        [style.top]="config.ct.navigationArrow.containerTop + 'px'"
+        [style.paddingLeft]="config.ct.navigationArrow.hPadding + 'px'">
+
+        <div
+            (click)="controller.navigateArrowClick('START')"
+            [style.top]="config.ct.navigationArrow.arrowTop + 'px'"
+            [style.width]="config.ct.navigationArrow.width + 'px'"
+            [style.height]="config.ct.navigationArrow.width + 'px'"
+            [style.backgroundColor]="config.ct.navigationArrow.bgColor">
+
+            <mat-icon
+                [style.fontSize]="config.ct.navigationArrow.arrowSize + 'px'"
+                [style.with]="config.ct.navigationArrow.arrowSize + 'px'"
+                [style.height]="config.ct.navigationArrow.arrowSize + 'px'"
+                [style.color]="config.ct.navigationArrow.arrowColor"
+                aria-hidden="false"
+                aria-label="Scroll Back">
+                    arrow_back
+            </mat-icon>
+        </div>
+    </div>
+
+
+    <!-- Left Arrow -->
+    <div
+        #rightArrow
+        class="ecg-nav-arrow ecg-right-nav-arrow"
+        [style.height]="config.ct.line.height + 'px'"
+        [style.top]="config.ct.navigationArrow.containerTop + 'px'"
+        [style.paddingRight]="config.ct.navigationArrow.hPadding + 'px'">
+
+        <div
+            (click)="controller.navigateArrowClick('END')"
+            [style.top]="config.ct.navigationArrow.arrowTop + 'px'"
+            [style.width]="config.ct.navigationArrow.width + 'px'"
+            [style.height]="config.ct.navigationArrow.width + 'px'"
+            [style.backgroundColor]="config.ct.navigationArrow.bgColor">
+
+            <mat-icon
+                [style.fontSize]="config.ct.navigationArrow.arrowSize + 'px'"
+                [style.with]="config.ct.navigationArrow.arrowSize + 'px'"
+                [style.height]="config.ct.navigationArrow.arrowSize + 'px'"
+                [style.color]="config.ct.navigationArrow.arrowColor"
+                aria-hidden="false"
+                aria-label="Scroll Forward">
+                    arrow_forward
+            </mat-icon>
+        </div>
+    </div>
+
+</ng-container>

@@ -1,0 +1,105 @@
+ <div
+        #outerContainer
+        class="scroll-container ecg-strip"
+        [ngClass]="cssContainerClass">
+
+        <div class="ecg-strip-nonscrollable">
+
+            <ng-container *ngIf="ecgCardConfig?.data.sortTypes.length">
+                <div class="tag-container">
+                    <span
+                        class="tag"
+                        *ngFor="let sortType of ecgCardConfig.data.sortTypes">
+                        {{ sortType | displaySortType | translate }} <ng-container *ngIf="sortType === RhythmSortType.MDN">{{ecgCardConfig.data.episode.mdNotification}}</ng-container>
+                    </span>
+                </div>
+            </ng-container>
+
+            <!-- Put non scrollable content/elements here -->
+
+            <!-- Axis Grid -->
+            <app-ecg-axis-grid
+                *ngIf="stripConfig?.ct?.axisGrid.show">
+            </app-ecg-axis-grid>
+
+            <!-- Beats Line -->
+            <app-ecg-beats-add-line
+                *ngIf="stripConfig?.ct?.beats.showLines">
+            </app-ecg-beats-add-line>
+
+            <!-- Num Seconds Viewable Text -->
+            <app-ecg-seconds-text
+                *ngIf="stripConfig?.ct?.global.secondsViewType">
+            </app-ecg-seconds-text>
+
+            <app-episode-duration-text
+                *ngIf="stripConfig?.ct?.episodeDurationText?.show">
+            </app-episode-duration-text>
+
+            <app-episode-hr-text
+                *ngIf="stripConfig?.ct?.global?.showHrType">
+            </app-episode-hr-text>
+
+            <app-focus-indicator
+                *ngIf="stripConfig?.ct?.focusIndicator?.show">
+            </app-focus-indicator>
+
+            <!-- Window Navigation Arrows -->
+            <!--
+            <app-ecg-navigation-arrow
+                *ngIf="stripConfig.ct.navigationArrow.show">
+            </app-ecg-navigation-arrow>
+            -->
+
+            <ng-container *ngIf="globalConfig.ct.viewType == EcgViewType.ADDITIONAL_STRIP">
+                <div class="strip-ms-container">
+                    <div class="strip-ms-border">
+                        &nbsp;
+                    </div>
+                    <div class="strip-ms-text">400 ms</div>
+                </div>
+
+                <div class="strip-mm-container">
+                    23 mm/mV, 8s
+                </div>
+            </ng-container>
+        </div>
+
+
+        <div
+            #scrollContainer
+            class="ecg-strip-scrollable"
+            (scroll)="onScroll($event)">
+
+            <div class="ecg-strip-scrollable-content">
+
+                <!-- Put scrollable content/elements here -->
+
+                <!-- Primary Episode Indicator -->
+                <app-ecg-primary-episode-indicator
+                    *ngIf="stripConfig?.ct?.primaryEpisodeIndicator?.show">
+                </app-ecg-primary-episode-indicator>
+
+                <!-- Canvas Lines -->
+                <!-- Set the disabled state of the edit panel based on if the user clicks outside strip-->
+                <div
+                    #positioner
+                    class="ecg-canvas-container"
+                    tabindex="0"
+                    (blur)="disablePaintingCommitEditSession()"
+                    (mousedown)="isMultiSelect($event)">
+
+                    <canvas
+                        #ecgCanvas
+                        class="ecg-canvas">
+                    </canvas>
+                </div>
+
+                <!-- ECG Lines Image generated fro the ECG Canvas -->
+                <img
+                    #ecgLineBackgroundImg
+                    class="ecg-lines-image"
+                    [style.width]="stripConfig?.ct?.global.overflowWidth + 'px'"/>
+            </div>
+        </div>
+    </div>

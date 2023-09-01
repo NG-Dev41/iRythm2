@@ -1,0 +1,147 @@
+
+<div
+	*ngFor="let navItem of recordDto.navigationItems"
+	class="nav-items">
+
+	<div class="nav-items-container">
+
+		<!-- START TOP LEVEL NAV ITEMS -->
+		<div
+            *ngIf="navItem | recordShowParent : navItem.metricType : recordDto.metrics"
+			class="nav-item nav-parent-item"
+			[ngClass]="navItem | recordNavigationStatus">
+
+			<!--
+				This determines which nav item template to use.
+				Nav items that link and nav items that do not link
+			-->
+			<ng-container
+				[ngTemplateOutlet]="navItem.url ? navItemWithLink : navItemWithoutLink"
+				[ngTemplateOutletContext]="{navItem : navItem}">
+			</ng-container>
+
+			<!-- NAV ITEM LINKING TEMPLATE -->
+			<ng-template #navItemWithLink let-navItem="navItem">
+
+				<a
+					class="nav-item-link"
+					[ngClass]="(navItem | recordActiveNavigation) ? 'nav-item-active-link' : ''"
+					[routerLink]="(isLoading | async) ? null : (navItem.url | recordLink)">
+
+					<!-- Dot Status Indicator -->
+					<span class="nav-item-dot"></span>
+
+					<!-- Have a few annoying special cases we have to deal with -->
+					<container-element [ngSwitch]="navItem.pageKey">
+
+						<!-- Triggers & Diaries -->
+						<ng-container *ngSwitchCase="RecordNavigationKey.TRIGGERS_DIARIES">
+							<span class="nav-item-text" [class]="navItem | recordQualityCheckStatus: qualityCheckStatuses">
+								Triggers ({{navItem.metricType | recordMetric : 'patientTriggers' : recordDto.metrics}})
+								&amp;
+								Diaries ({{navItem.metricType | recordMetric : 'patientDiaries' : recordDto.metrics}})
+							</span>
+						</ng-container>
+
+						<!-- Report Prep -->
+						<ng-container *ngSwitchCase="RecordNavigationKey.REPORT_PREP">
+							<span class="nav-item-text" [class]="navItem | recordQualityCheckStatus: qualityCheckStatuses">{{navItem.name}}</span>
+							<span class="pill pill-num-strips">
+								Strips: {{recordDto.metrics.additionalStrips}}
+							</span>
+						</ng-container>
+
+						<!-- Default Links -->
+						<ng-container *ngSwitchDefault>
+							<span class="nav-item-text" [class]="navItem | recordQualityCheckStatus: qualityCheckStatuses">{{navItem.name}}</span>
+						</ng-container>
+					</container-element>
+				</a>
+			</ng-template>
+
+
+			<!-- NAV ITEM NON LINKING TEMPLATE -->
+			<ng-template #navItemWithoutLink let-navItem="navItem">
+
+				<div
+					class="nav-item-link collapse-link"
+					(click)="navigationService.toggleNavigation(navItem)">
+
+					<!-- Dot Status Indicator -->
+					<span class="nav-item-dot"></span>
+
+					<!-- Navigation Text -->
+					<span class="nav-item-text">{{navItem.name}}</span>
+
+					<!-- Special Case for Ectopic Beats -->
+					<ng-container *ngIf="navItem.pageKey == RecordNavigationKey.ECTOPICS">
+
+						<!-- VE Pill Check -->
+						<span
+                            [ngClass]="(recordDto.metrics.veChapterPage) | recordChapterPage"
+                            [matTooltip]="(recordDto.metrics.veChapterPage ? 'record.navigation.chapterPageVisible' : 'record.navigation.chapterPageNotVisible') | translate : { category: ectopicCategory.VE }"
+                            [matTooltipPosition]="'above'">
+							VE
+						</span>
+
+						<!-- SVE Pill Check -->
+						<span
+							[ngClass]="(recordDto.metrics.sveChapterPage) | recordChapterPage"
+                            [matTooltip]="(recordDto.metrics.sveChapterPage ? 'record.navigation.chapterPageVisible' : 'record.navigation.chapterPageNotVisible') | translate : { category: ectopicCategory.SVE }"
+                            [matTooltipPosition]="'above'">
+							SVE
+						</span>
+
+					</ng-container>
+
+					<!-- Toggle Control -->
+					<span class="nav-item-toggle-control">
+						<mat-icon>
+							{{(navItem.toggleStatus == RecordNavigationToggleStatus.CLOSED) ? 'expand_more' : 'expand_less'}}
+						</mat-icon>
+					</span>
+				</div>
+			</ng-template>
+
+		</div>
+
+
+
+
+		<!-- START CHILD NAVIGATION ITEMS -->
+		<div
+			*ngIf="navItem.children"
+			class="nav-child-items"
+			[ngClass]="navItem.toggleStatus == RecordNavigationToggleStatus.CLOSED ? 'closed' : 'open'">
+
+			<ng-container *ngFor="let navChildItem of navItem.children">
+
+				<div
+                    *ngIf="navChildItem | recordShowChild : recordDto.metrics"
+					class="nav-item nav-child-item"
+					[ngClass]="navChildItem.status">
+
+					<div class="nav-item-dot-vline"></div>
+
+					<a
+						class="nav-item-link"
+						[ngClass]="(navChildItem | recordActiveNavigation) ? 'nav-item-active-link' : ''"
+                        [routerLink]="(isLoading | async) ? null : (navChildItem.url | recordLink)"
+                        [queryParams]="navChildItem.params">
+
+						<span class="nav-item-dot-container">
+							<span class="nav-item-dot-hline"></span>
+							<span class="nav-item-dot"></span>
+						</span>
+
+						<span class="nav-item-text" [class]="navChildItem | recordQualityCheckStatus: qualityCheckStatuses">
+							{{navChildItem.name}} ({{navChildItem.metricType | recordMetric : navChildItem.pageKey : recordDto.metrics}})
+						</span>
+					</a>
+
+				</div>
+			</ng-container>
+
+		</div>
+	</div>
+</div>

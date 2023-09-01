@@ -1,0 +1,126 @@
+<h2 class="table-header">
+    On-Hold
+</h2>
+
+<table
+    class="queue-table on-hold-table"
+    cellspacing="0"
+    cellpadding="0">
+
+    <thead>
+        <tr>
+            <th *ngFor="let header of columnHeaders">
+                {{header}}
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <!-- TODO: Move this queueUtils.calcDaysInQueue to a pipe -->
+        <tr
+            *ngFor="let record of queueService.onHoldRecords"
+            (click)="openOnHoldModal(record)"
+            matTooltip="Please complete the 3 days old on-hold record before continuing other on-hold records."
+            [matTooltipDisabled]="!isRecordDisabled(record)"
+            [ngClass]="{
+                'warning-left-border': queueUtils.calcDaysInQueue(record.lockedDateTime) > 2,
+                'queue-table-hover': !isOptionsHovered && !isRecordDisabled(record),
+                'hover-cursor-pointer': !isRecordDisabled(record),
+                'bold': record | newRecord | async
+            }">
+
+            <td [ngClass]="{
+                    'disabled-opacity': isRecordDisabled(record),
+                     'bold': record | newRecord | async
+                }">
+                <span [ngClass]="{'dot': record | newRecord | async}"></span>
+                {{record.ecgSerialNumber}}
+            </td>
+
+            <td [ngClass]="{
+                    'disabled-opacity': isRecordDisabled(record),
+                     'bold': record | newRecord | async
+                }">
+                <ng-container *ngIf="(record | daysInQueue) > 2">
+
+                    <div class="more-than-two-days-container">
+
+                        <!-- TODO: Should we move this into it's own file?? -->
+                        <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 0L0 17.3278H20L10 0Z" fill="#F03C2D"/>
+                            <path d="M9.99001 15.0076C10.4125 15.0076 10.7549 14.6651 10.7549 14.2427C10.7549 13.8202 10.4125 13.4778 9.99001 13.4778C9.56756 13.4778 9.2251 13.8202 9.2251 14.2427C9.2251 14.6651 9.56756 15.0076 9.99001 15.0076Z" fill="white"/>
+                            <path d="M10 11.7235V5.60425" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                        <div>
+                            More than {{record | daysInQueueCell: false}} days ago
+                        </div>
+
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf="(record | daysInQueue) <= 2" >
+                    Less than {{record | daysInQueueCell: true}} day(s) ago
+                </ng-container>
+            </td>
+
+            <td [ngClass]="{
+                    'disabled-opacity': isRecordDisabled(record),
+                     'bold': record | newRecord | async
+                }">
+                <app-priority-types [record]="record"></app-priority-types>
+            </td>
+
+            <td
+                [ngClass]="{
+                    'disabled-opacity': isRecordDisabled(record),
+                     'bold': record | newRecord | async
+                }">
+
+                <ng-container *ngIf="record.mdnTypesList?.length > 0">
+                    <span matTooltip="{{record.mdnTypesList | joinWithCommaPipe}}">
+                        {{record.mdnTypesList | joinWithCommaPipe}}
+                    </span>
+                </ng-container>
+
+                <ng-container *ngIf="record.mdnTypesList?.length === 0">
+                    N/A
+                </ng-container>
+            </td>
+
+            <td class="options-flexbox">
+                    <button
+                        mat-icon-button
+                        class="small-icon-button copy-button"
+                        (click)="writeUrlToClipboard($event)"
+                        (mouseenter)="setOptionsHovered(true)"
+                        (mouseleave)="setOptionsHovered(false)">
+
+                        <mat-icon class="queue-link-icon-scale" svgIcon="icon-link"></mat-icon>
+
+                    </button>
+
+                    <div class="vertical-line"></div>
+
+                    <app-notes (click)="stopPropagation($event)"
+                               (mouseenter)="setOptionsHovered(true)"
+                               (mouseleave)="setOptionsHovered(false)"
+                               [serialNumber]="record.ecgSerialNumber"
+                               [newNoteNumber]="record.notesCount">
+                    </app-notes>
+
+            </td>
+        </tr>
+
+        <tr
+            *ngIf="queueService.onHoldRecords?.length <= 0"
+            class="add-new-record-row">
+
+            <td [attr.colspan]="columnHeaders?.length" class="no-records-text">
+                You have not placed any records on-hold.
+            </td>
+        </tr>
+    </tbody>
+</table>

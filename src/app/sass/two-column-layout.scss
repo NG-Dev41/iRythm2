@@ -1,0 +1,70 @@
+/* Move to sass directory */
+@import 'src/app/sass/config/settings';
+
+$sidebar-width: 285px;
+
+.col-container {
+	margin: 0;
+	padding: 0;
+	display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.left-col, .right-col {
+    height: 100%;
+}
+
+.left-col {
+	background-color: $midnight;
+	color: $gray400;
+	overflow-y: auto;
+	width: $sidebar-width;
+	position: fixed;
+}
+
+.right-col {
+	flex: 1;
+	overflow-y: scroll;
+	margin-left: $sidebar-width;
+}
+
+.right-col-overlay {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0, .4);
+}
+
+.right-col-modal {
+    padding: 43px;
+    height: calc(100vh - 122px);
+    width: calc(100vw - 333px);
+    background-color: white;
+    margin: 61px 24px;
+    border-radius: 16px;
+}
+
+.main-content {
+	padding: 0 23px;
+}
+
+.header-bar {
+	display: flex;
+	position: sticky;
+	top: 0;
+	width: 100%;
+	background-color: $white;
+	// padding: 10px 40px;
+	min-height: 65px;
+    // Make sure the header is always on top of the content but below cdk-overlay(z-index: 1000)
+    z-index: 600;
+}
+
+.header-title {
+	color: $midnight;
+	font-size: 24px;
+    padding: 24px 0 24px 40px;
+    font-family: SoehneWebKraftig;
+}

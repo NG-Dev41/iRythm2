@@ -1,0 +1,71 @@
+@import '../../../sass/config/settings';
+
+.ecg-edit-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-bar-divider{
+    margin: 20px 24px 20px 24px;
+    border-top: 1px solid $gray500;
+}
+
+.edit-title {
+    font-family: SoehneWebKraftig;
+    color: $white;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 6px 24px;
+}
+
+.edit-link-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-bar-button {
+    font-family: SoehneWebBuch;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    padding: 6px 24px 6px 32px;
+    text-decoration: none;
+    color: $white;
+    cursor: pointer;
+
+    &:hover, &.edit-bar-button-active{
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.rectangle{
+    position: relative;
+    width: 10px;
+    height: 10px;
+    top: 4px;
+    border-radius: 3px;
+}
+
+.rectangle-container{
+    padding-right: 12px;
+}
+
+.bubble{
+    color: $white;
+    font-size: 12px;
+    padding: 1px 8px 1px 8px;
+    border: 1px solid $white;
+    border-radius: 16px;
+    margin-left: 8px;
+}
+
+.shortcut{
+    display: flex;
+    align-self: flex-end;
+}
+
+.divider{
+    display: flex;
+    flex: 1;
+}

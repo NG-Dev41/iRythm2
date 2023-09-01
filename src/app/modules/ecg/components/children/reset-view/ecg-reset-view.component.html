@@ -1,0 +1,12 @@
+<ng-container *ngIf="controller.componentLoadState === EcgComponentState.READY">
+
+    <!-- TODO: Should we introduce a button and/or a toggleButton commons component?? -->
+    <div
+        *ngIf="controller.config.ct.resetView.state !== EcgResetViewType.INITIAL"
+        class="button reset-view-button">
+        <button (click)="controller.resetView()">
+            Reset
+        </button>
+    </div>
+</ng-container>
+

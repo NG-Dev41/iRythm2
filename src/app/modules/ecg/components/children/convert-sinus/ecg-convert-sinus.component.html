@@ -1,0 +1,10 @@
+<ng-container *ngIf="controller.componentLoadState == EcgComponentState.READY">
+
+    <!-- TODO: Should we introduce a button and/or a toggleButton commons component?? -->
+    <div class="convert-sinus-button">
+        <button class="btn-neutral" (click)="convertToSinus()">
+            Convert to Sinus
+        </button>
+    </div>
+
+</ng-container>

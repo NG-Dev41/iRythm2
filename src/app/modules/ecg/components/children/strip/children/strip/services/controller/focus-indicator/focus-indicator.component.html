@@ -1,0 +1,17 @@
+<!-- TODO: The PSI Container gets in the way of canvas events (Because it overlays the canvas) -->
+<div
+    class="focus-indicator-container"
+    [style.display]="'flex'"
+    [style.left]="left + 'px'"
+    [style.top]="top + 'px'">
+
+    <div class="focus-indicator-inner-container">
+        <div class="focus-indicator-text smooth-16">
+            Focus
+        </div>
+        <div
+            class="focus-indicator-border"
+            [style.width]="width + 'px'">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="undo-dialog">
+
+    <h3 class="undo-dialog-title">Undo {{ this.data.undoList.length}} Action(s)?</h3>
+
+<mat-dialog-content>
+    <div class="undo-dialog-content">
+        <span>Are you sure you want to undo:</span>
+
+        <ol class="undo-dialog-ol">
+            <li *ngFor="let recentEdit of this.data.undoList;">
+                {{ recentEdit.description.split('=')[1].split(',')[0] }}
+            </li>
+        </ol>
+
+        <p>This action cannot be undone.</p>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="button-container-row">
+    <button class="btn-tertiary btn-md" [mat-dialog-close]="false">Cancel</button>
+    <button class="btn-primary btn-md"  [mat-dialog-close]="true">Undo {{ this.data.undoList.length}} Action(s)</button>
+</mat-dialog-actions>
+
+</div>

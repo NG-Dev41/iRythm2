@@ -1,0 +1,40 @@
+<div [disableOverlay]="isDisabled"
+     class="record-header-undo-wrapper">
+
+    <!-- button when clicked that will undo the most recent edit -->
+    <button class="header-undo-button"
+            (click)="undoLastEdit()">
+        <mat-icon svgIcon="icon-header-undo" class="record-undo-icon"></mat-icon>
+    </button>
+
+    <!-- button when clicked will open the list of 5 recent edits -->
+    <button [matMenuTriggerFor]="undoMenu" class="header-undo-button">
+        <mat-icon svgIcon="icon-header-undo-dropdown" class="record-undo-dropdown-icon"></mat-icon>
+    </button>
+
+</div>
+
+<div>
+    <mat-menu #undoMenu="matMenu"
+              class=" app-mat-menu ecg-undo-edit-container">
+
+            <ng-container *ngIf="!isDisabled">
+
+                <!-- List of past 5 edits -->
+                    <ng-container *ngFor="let recentEdit of recentEditList; index as i;">
+                        <button mat-menu-item
+                                (click)="undoEdit(i)"
+                                [ngClass]="{'mat-menu-item-hover': i < hoveredItemIndex}"
+                                (mouseenter)="hoveredItemIndex = i"
+                                (mouseleave)="hoveredItemIndex = -1">
+                            <span> Undo {{ recentEdit.description.split('=')[1].split(',')[0] }} </span>
+                            <span class="menu-item-page">{{ recentEdit.description.split('=').slice(-1)[0].slice(0, -1) }}</span>
+                        </button>
+                    </ng-container>
+
+            </ng-container>
+
+
+    </mat-menu>
+</div>
+

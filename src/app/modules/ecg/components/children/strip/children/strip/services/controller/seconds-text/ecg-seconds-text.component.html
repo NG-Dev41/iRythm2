@@ -1,0 +1,13 @@
+<div class="ecg-num-seconds">
+
+    <container-element [ngSwitch]="config.ct.global.secondsViewType">
+
+        <div *ngSwitchCase="EcgSecondsViewType.IN_VIEW">
+            {{config.ct.global.numSecondsViewable}} s
+        </div>
+        <div *ngSwitchCase="EcgSecondsViewType.IN_VIEW_TOTAL">
+           {{config.ct.global.numSecondsViewable}}/{{config.ct.global.numTotalSeconds}} s
+        </div>
+
+    </container-element>
+</div>

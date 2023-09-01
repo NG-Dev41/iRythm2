@@ -1,0 +1,34 @@
+<div class="right-col-modal multiline-modal" #modalContainer>
+    <h1 class="multiline-modal-title">Edit Strip</h1>
+    <div class="multiline-modal-toolbar">
+        <div class="multiline-modal-toolbar-left">
+            <p>
+                01/02/17
+            </p>
+            <p>
+                12:12:13pm
+            </p>
+        </div>
+        <div class="multiline-modal-toolbar-right">
+            <p class="fw-500">
+                Gain:
+            </p>
+            <app-ecg-gain> </app-ecg-gain>
+        </div>
+    </div>
+    <div class="multiline-modal-strip">
+        <app-ecg-strip
+            [config]="originalStripConfigWithSampleData"
+            [cssContainerClass]="'parent-strip'">
+        </app-ecg-strip>
+    </div>
+
+    <div class="multiline-modal-cancel-save">
+        <button class="btn-tertiary btn-md" (click)="cancelEdits()" #multilineCancelButton>
+            Cancel
+        </button>
+        <button class="btn-primary btn-md" (click)="saveEdits()" #multilineSaveButton>
+            Save
+        </button>
+    </div>
+</div>

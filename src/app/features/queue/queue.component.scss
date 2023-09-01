@@ -1,0 +1,20 @@
+@import 'src/app/sass/two-column-layout';
+@import '../../sass/config/settings';
+
+.app-productivity-dashboard-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 40px;
+}
+
+.queue-header {
+    font-family: 'SoehneWebExtraLeicht';
+    font-size: 32px;
+    line-height: 41.6px;
+    color: $gray700;
+    padding-top: 40px;
+}

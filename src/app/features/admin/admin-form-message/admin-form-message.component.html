@@ -1,0 +1,6 @@
+<div class="admin-message" [ngClass]="{
+    'default': messageType === IAdminMessageType.DEFAULT,
+    'success': messageType === IAdminMessageType.SUCCESS,
+    'warn': messageType === IAdminMessageType.WARN,
+    'error': messageType === IAdminMessageType.ERROR
+}"> {{message}} </div>

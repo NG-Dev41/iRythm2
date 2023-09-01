@@ -1,0 +1,185 @@
+<h2 class="table-header">
+    In Progress
+</h2>
+
+<table
+        cellpadding="0"
+        cellspacing="0"
+        class="queue-table in-progress-table">
+
+    <thead>
+    <tr>
+        <th *ngFor="let header of columnHeaders">
+            {{header}}
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <!-- TODO: Move this queueUtils.calcDaysInQueue to a pipe -->
+    <tr
+            *ngFor="let record of queueService.inProgressRecords"
+            class="queue-table-hover hover-cursor-pointer"
+            (click)="navigateToRecord(record)"
+            [ngClass]="{
+                'warning-left-border': queueUtils.calcDaysInQueue(record.lockedDateTime) > 2,
+                'queue-table-hover': !isOptionsHovered
+            }">
+
+        <td>
+            {{record.ecgSerialNumber}}
+        </td>
+
+        <td>
+            <ng-container *ngIf="(record | daysInQueue) > 2">
+                <div class="more-than-two-days-container">
+
+                    <!-- TODO: Should we move this into it's own file?? -->
+                    <svg fill="none" height="18" viewBox="0 0 20 18" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0L0 17.3278H20L10 0Z" fill="#F03C2D"/>
+                        <path d="M9.99001 15.0076C10.4125 15.0076 10.7549 14.6651 10.7549 14.2427C10.7549 13.8202 10.4125 13.4778 9.99001 13.4778C9.56756 13.4778 9.2251 13.8202 9.2251 14.2427C9.2251 14.6651 9.56756 15.0076 9.99001 15.0076Z"
+                              fill="white"/>
+                        <path d="M10 11.7235V5.60425" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="1.5"/>
+                    </svg>
+
+                    <div>
+                        More than {{record | daysInQueueCell: false}} days ago
+                    </div>
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="(record | daysInQueue) <= 2">
+                Less than {{record | daysInQueueCell: true}} day(s) ago
+            </ng-container>
+        </td>
+
+        <td>
+            <app-priority-types [record]="record"></app-priority-types>
+        </td>
+
+        <td>
+            <ng-container *ngIf="record.mdnTypesList?.length > 0">
+                <span matTooltip="{{record.mdnTypesList | joinWithCommaPipe}}">
+                    {{record.mdnTypesList | joinWithCommaPipe}}
+                </span>
+            </ng-container>
+
+            <ng-container *ngIf="record.mdnTypesList?.length === 0">
+                N/A
+            </ng-container>
+        </td>
+
+        <td class="options-flexbox">
+            <button
+                    [matMenuTriggerFor]="inProgressOptions"
+                    class="options-menu-trigger small-icon-button"
+                    #t="matMenuTrigger"
+                    [class.opened]="t.menuOpen"
+                    (click)="stopPropagation($event)"
+                    (mouseenter)="setOptionsHovered(true)"
+                    (mouseleave)="setOptionsHovered(false)"
+                    mat-icon-button>
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+
+            <!-- TODO: Can some of this be moved into it's own component / logic ?? -->
+                <mat-menu class="app-mat-menu" #inProgressOptions="matMenu"
+                      (mouseenter)="setOptionsHovered(true)"
+                      (mouseleave)="setOptionsHovered(false)">
+
+                <button
+                        (click)="queueUtils.writeUrlToClipboard()"
+                        mat-menu-item>
+                    Copy Report URL
+                </button>
+
+                <div class="split-menu-item">
+
+                    <button
+                            (mouseover)="closeConsultationMenu()"
+                            (click)="placeOnHold(record)"
+                            class="split-menu-item__text border"
+                            [class.active]="isConsultationMenuOpened === true">
+                        Place On Hold
+                    </button>
+
+                    <button
+                        #consultationTrigger
+                        [matMenuTriggerFor]="consulation"
+                        class="split-menu-item__trigger"
+                        (menuOpened)="isConsultationMenuOpened = true;"
+                        (menuClosed)="isConsultationMenuOpened = false;"
+                        mat-menu-item>
+                        <mat-icon>chevron_right</mat-icon>
+                    </button>
+                </div>
+
+                <mat-menu class="app-mat-menu mark-consultation-menu" #consulation="matMenu">
+                    <button
+                            (click)="markAsConsultation(record)"
+                            mat-menu-item>
+                        Mark As Consultation
+                    </button>
+
+                </mat-menu>
+
+                </mat-menu>
+
+                <app-notes
+                    [newNoteNumber]="record.notesCount"
+                    [serialNumber]="record.ecgSerialNumber"
+                    (click)="stopPropagation($event)"
+                    (mouseenter)="setOptionsHovered(true)"
+                    (mouseleave)="setOptionsHovered(false)">
+            </app-notes>
+        </td>
+    </tr>
+
+    <tr
+            *ngIf="queueService.inProgressRecords?.length <= 0"
+            class="add-new-record-row">
+
+        <td [attr.colspan]="columnHeaders?.length">
+
+            <div class="no-records-text">
+                You are currently not working on any records.
+            </div>
+
+            <ng-template [ngIf]="queueService.onHoldRecords.length < 5">
+                <div
+                        [matTooltipDisabled]="!queueService.hasRecordLongerThanThreeDays"
+                        matTooltip="Please complete the 3 days old on-hold record before starting a new one.">
+
+                    <ng-template [ngIf]="queueService.hasRecordLongerThanThreeDays">
+                        <button (click)="openAgingRecordsDialog()"
+                                class="add-new-record-button">
+                            <mat-icon svgIcon="icon-add-outline-heavy-medium-grey"class="start-new-record-icon"></mat-icon> {{ newRecordText }}
+                        </button>
+                    </ng-template>
+
+                    <ng-template [ngIf]="!queueService.hasRecordLongerThanThreeDays">
+                        <button (click)="startNewRecord()"
+                                class="add-new-record-button">
+                            <mat-icon svgIcon="icon-add-outline-heavy-medium-indigo"class="start-new-record-icon"></mat-icon> {{ newRecordText }}
+                        </button>
+                    </ng-template>
+                </div>
+            </ng-template>
+
+            <ng-template [ngIf]="queueService.onHoldRecords.length >= 5">
+                <div
+                        matTooltip="You have reached the limit of 5 on-hold records. Please prioritize them first before starting a new record.">
+
+                        <button disabled
+                                class="add-new-record-button">
+                            <mat-icon svgIcon="icon-add-outline-heavy-medium-grey" class="start-new-record-icon"></mat-icon> {{ newRecordText }}
+                        </button>
+                </div>
+            </ng-template>
+        </td>
+    </tr>
+    </tbody>
+</table>

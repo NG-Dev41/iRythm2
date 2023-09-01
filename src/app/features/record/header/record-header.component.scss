@@ -1,0 +1,59 @@
+@import '../../../sass/config/_settings.scss';
+
+.top-bar {
+	display: flex;
+    z-index: 1;
+}
+
+.header-title {
+    font-size: 24px;
+    font-family: SoehneWebBuch;
+
+    span {
+        font-family: 'SoehneWebLeicht';
+    }
+}
+
+.header-wrapper {
+    background: white;
+
+    mat-toolbar-row {
+        width: 100%;
+    }
+}
+
+.right-sidebar-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.header-border-line {
+    border-right: 1px solid $gray300;
+    margin-right: 10px;
+    padding-right: 10px;
+    height: 26px;
+}
+
+.navigation-bar {
+    border-top: 0.7px solid $gray300;;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation-options {
+    display: flex;
+}
+
+/*
+.header-wrapper .mat-toolbar-row {
+    height: auto;
+    padding: 0 40px;
+}
+*/
+
+.mat-toolbar-row.navigation-bar {
+    height: auto;
+    padding: 0 40px;
+}

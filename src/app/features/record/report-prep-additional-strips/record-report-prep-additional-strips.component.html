@@ -1,0 +1,13 @@
+
+<!-- Ecg Additonal Strip List -->
+<div
+    *ngIf="responseLoadState == ComponentLoadState.LOADED"
+    class="rhythm-page-ecg-list">
+
+    <app-ecg-list
+        [config]="ecgConfig">
+    </app-ecg-list>
+
+</div>
+
+

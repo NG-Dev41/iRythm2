@@ -1,0 +1,25 @@
+<h1 class="aging-records-title"> Continuing an On-Hold Record </h1>
+
+<mat-dialog-content>
+
+    <p class="aging-records-secondary">
+        Opening this on-hold record will put the current in progress record on-hold.
+    </p>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="button-container-row">
+
+    <button class="btn-tertiary btn-md aging-records-start-new"
+            mat-dialog-close>
+        Cancel
+    </button>
+
+    <button class="btn-primary btn-md aging-records-close"
+            (click)="setRecordInProgress()"
+            routerLink="record/{{data.serialNumber}}"
+            mat-dialog-close>
+        Okay And Continue
+    </button>
+
+</mat-dialog-actions>

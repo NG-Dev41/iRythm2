@@ -1,0 +1,24 @@
+<h1 class="title">Approve Report</h1>
+
+<mat-dialog-content>
+
+    <p>
+        This will approve the final report and publish it. You can’t redo this action.
+    </p>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="button-container-row">
+
+    <button class="btn-tertiary btn-md"
+            mat-dialog-close>
+        Cancel
+    </button>
+
+    <button class="btn-primary btn-md"
+            (click)="approveReport()"
+            mat-dialog-close>
+        Yes, Approve It
+    </button>
+
+</mat-dialog-actions>

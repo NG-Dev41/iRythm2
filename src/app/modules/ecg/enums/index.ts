@@ -1,0 +1,274 @@
+/**
+ * Beat Types
+ */
+export enum EcgBeatType{
+    REGULAR = 'REGULAR',
+    ECTOPY = 'ECTOPY',
+    BLANK ='BLANK'
+}
+
+/**
+ * Unique key for each component
+ */
+export enum EcgComponentKey {
+	ECG,
+	GAIN,
+	WINDOW,
+	STRIP,
+	STRIP_GROUP,
+	STRIP_BEATS,
+	STRIP_AXIS_GRID,
+	MIN_MAX_TOGGLE,
+	CONVERT_ARTIFACT,
+	LIST,
+	EXPAND_VIEW_TOGGLE,
+	RESET_VIEW,
+	CONVERT_SINUS,
+	CALIPER,
+	HIGHLIGHTER,
+	NAVIGATION_ARROW,
+	INFO,
+	ACTION_MENU,
+	EDIT_BAR,
+	UNDO_EDIT,
+	LINE,
+	BEAT
+}
+
+/**
+ * Dao
+ */
+export enum EcgDaoComponentKey {
+	ECG,
+	CONVERT_ARTIFACT
+}
+
+export enum EcgDaoChannelKey{
+	DAO_EDIT = 'DAO_EDIT',
+	ANALYZE = 'ANALYZE'
+}
+
+
+/**
+ * States of a component
+ */
+export enum EcgComponentState {
+	READY,
+    LOADING
+}
+
+
+/**
+ * Beats action types
+ */
+export enum EcgBeatActionType {
+    ADD,
+    ADD_AVG,
+    REMOVE,
+    BLANK,
+    MARK_NORMAL,
+    RENDER,
+    MARK_ECTOPY
+}
+
+
+export enum EcgBeatRenderActionType {
+	RENDER
+}
+
+/**
+ * Caliper Action Type
+ */
+export enum EcgCaliperActionType {
+	RESET_CALIPER,
+	PAINT_INTERVAL
+}
+
+
+/**
+ * Sample action types
+ * // TODO: Change this to something different
+ */
+export enum EcgLineActionType {
+	LOAD_POINTS,
+	LOAD_EPISODES,
+	PROCESS_EPISODE_LINES,
+	RENDER,
+	LOG_REGION
+}
+
+
+/**
+ * Ecg Window Types
+ */
+export enum EcgStripType {
+	PARENT,
+	CHILD
+}
+
+
+/**
+ * Notification Channels available to listen in on.
+ * NOTE: These needs a value set (it will break if you remove these)
+ */
+export enum EcgChannelKey {
+	GAIN_CHANGE = 'GAIN_CHANGE',
+	COMPONENT_STATE = 'COMPONENT_STATE',
+	MIN_MAX = 'MIN_MAX',
+	CONVERT_ARTIFACT = 'CONVERT_ARTIFACT',
+	EXPAND_VIEW = 'EXPAND_VIEW',
+	CONVERT_SINUS = 'CONVERT_SINUS',
+	RESET_VIEW = 'RESET_VIEW',
+	ACTION_MENU = 'ACTION_MENU',
+	BEAT_ACTION = 'BEAT_ACTION',
+	BEAT_RENDER_ACTION = 'BEAT_RENDER_ACTION',
+	LINE_RENDER_ACTION = 'LINE_RENDER_ACTION',
+	//PROCESS_EPISODE_LINES = 'PROCESS_EPISODE_LINES',
+	PAINT_INTERVAL = 'PAINT_INTERVAL',
+	HIGHLIGHTER_MOVING = 'HIGHLIGHTER_MOVING',
+	MOVE_HIGHLIGHTER = 'MOVE_HIGHLIGHTER',
+	LINE_IMAGE_LOADED = 'LINE_IMAGE_LOADED',
+	NON_SCROLLABLE_CONTENT = 'NON_SCROLLABLE_CONTENT'
+}
+
+export enum EcgStripChannelKey {
+	CALIPER_ACTION = 'CALIPER_ACTION'
+}
+
+export enum EcgListChannelKey {
+	ACTION = 'ACTION',
+	BEAT_ACTION = 'BEAT_ACTION',
+	LINE_ACTION = 'LINE_ACTION',
+	EDIT_BAR = 'EDIT_BAR',
+	CONTEXT_MENU = 'CONTEXT_MENU',
+	LAYOUT_TYPE = 'LAYOUT_TYPE'
+}
+
+export enum EcgListActionType {
+	RELOAD_CARDS = 'RELOAD_CARDS',
+	ADD_CARD = 'ADD_CARD',
+	MODIFY_CARD_PRIMARY_EPISODE = 'MODIFY_CARD_PRIMARY_EPISODE',
+	REMOVE_CARD = 'REMOVE_CARD'
+}
+
+
+export enum EcgEpisodeType {
+	PRIMARY,
+	SURROUNDING
+}
+
+/**
+ * State of the loader
+ * TODO: This should be more generic to support additional Loader classes
+ */
+export enum EcgAnalyzerLoaderState {
+	IDLE,
+	LOADING,
+	LOADED
+}
+
+/**
+ * Edit Types
+ */
+export enum EcgRhythmTypeEdit {
+	CHANGE_RHYTHM = 'CHANGE_RHYTHM',
+	ECTOPIC_CHANGE_RHYTHM = 'ECTOPIC_CHANGE_RHYTHM',
+	INSERT_PEAK = 'INSERT_PEAK',
+	DELETE_PEAK = 'DELETE_PEAK',
+	MARK_NORMAL_PEAK = 'MARK_NORMAL_PEAK',
+	ECTOPIC_VE_PEAK = 'ECTOPIC_VE_PEAK',
+	ECTOPIC_SVE_PEAK = 'ECTOPIC_SVE_PEAK',
+	ECTOPIC_BIN_TO_ARTIFACT = 'ECTOPIC_BIN_TO_ARTIFACT',
+	ECTOPIC_SELECTED_KEEP = 'ECTOPIC_SELECTED_KEEP',
+	ECTOPIC_SELECTED_TO_ARTIFACT = 'ECTOPIC_SELECTED_TO_ARTIFACT',
+	ECTOPIC_NEW_REP_INDE = 'ECTOPIC_NEW_REP_INDE',
+	BIN_VE_TO_SVE = 'BIN_VE_TO_SVE',
+	BIN_SVE_TO_VE = 'BIN_SVE_TO_VE',
+	ECTOPIC_SELECTED_VE_TO_SVE = 'ECTOPIC_SELECTED_VE_TO_SVE',
+	ECTOPIC_SELECTED_SVE_TO_VE = 'ECTOPIC_SELECTED_SVE_TO_VE',
+	ECTOPIC_BIN_TO_NORMAL = 'ECTOPIC_BIN_TO_NORMAL',
+	ECTOPIC_SELECTED_TO_NORMAL = 'ECTOPIC_SELECTED_TO_NORMAL',
+	BIN_VE_MERGE = 'BIN_VE_MERGE',
+	ECTOPIC_BIN_DELETE = 'ECTOPIC_BIN_DELETE',
+	ECTOPIC_SELECTED_DELETE = 'ECTOPIC_SELECTED_DELETE',
+	PATIENT_TRIGGER_DELETE = 'PATIENT_TRIGGER_DELETE',
+	INSERT_CONSTANT_RATE_PEAKS = 'INSERT_CONSTANT_RATE_PEAKS',
+	SVT_BRIDGE = 'SVT_BRIDGE',
+	AF_BRIDGE_AUTO = 'AF_BRIDGE_AUTO',
+	AF_BRIDGE_MANUAL = 'AF_BRIDGE_MANUAL',
+	BREAK_AF_BRIDGE = 'BREAK_AF_BRIDGE',
+	MARK_MIN_SINUS = 'MARK_MIN_SINUS',
+	MARK_MAX_SINUS = 'MARK_MAX_SINUS',
+	REPLACE_PEAKS = 'REPLACE_PEAKS',
+	REPLACE_RHYTHMS = 'REPLACE_RHYTHMS',
+	BLANK_HR_REGION_CREATE = 'BLANK_HR_REGION_CREATE',
+	BLANK_HR_REGION_DELETE = 'BLANK_HR_REGION_DELETE',
+	QT_INCREASE_START_TIME = 'QT_INCREASE_START_TIME',
+	QT_DECREASE_START_TIME = 'QT_DECREASE_START_TIME',
+	QT_DECREASE_DURATION = 'QT_DECREASE_DURATION',
+	QT_ADD = 'QT_ADD',
+	QT_DELETE = 'QT_DELETE',
+	ADDITIONAL_STRIP_MANUAL_CREATE = 'ADDITIONAL_STRIP_MANUAL_CREATE',
+	ADDITIONAL_STRIP_AUTO_CREATE = 'ADDITIONAL_STRIP_AUTO_CREATE',
+	ADDITIONAL_STRIP_UPDATE = 'ADDITIONAL_STRIP_UPDATE',
+	ADDITIONAL_STRIP_DELETE = 'ADDITIONAL_STRIP_DELETE'
+}
+
+
+export enum EcgBeatTypeEdit {
+    CHANGE_BEAT_TYPE = 'CHANGE_BEAT_TYPE'
+}
+
+export enum EcgCursorType {
+	NEXT = 'NEXT',
+	PREVIOUS = 'PREVIOUS',
+	CENTER = 'CENTER'
+}
+
+/**
+ * Min/Max types
+ */
+export enum EcgMinMaxType {
+	DURATION = 'Show ONSET/OFFSET',
+	HEART_RATE = 'Show MIN/MAX'
+}
+
+/**
+ * Reset View Types
+ */
+
+export enum EcgResetViewType {
+	RESET = 'RESET',
+	INITIAL = 'INITIAL',
+	CHANGED = 'CHANGED',
+	WINDOW_RESIZED= 'WINDOW_RESIZED'
+}
+
+/**
+ * Expand View Types
+ */
+
+export enum EcgExpandViewType {
+	EXPAND = 'Show Expanded View',
+	SPLIT = 'Show Split View'
+}
+
+
+/**
+ * Enum used for displaying line seconds text
+ * IN_VIEW = Seconds in the viewable line only ex. 10s
+ * IN_VIEW_TOTAL = Above plus the total number of seoncds in the strip 30/90s
+ */
+export enum EcgSecondsViewType {
+	IN_VIEW = 'IN_VIEW',
+	IN_VIEW_TOTAL = 'IN_VIEW_TOTAL'
+}
+
+
+/**
+ * Top Level Ecg Strip View Type
+ */
+export enum EcgViewType {
+	DEFAULT = 'DEFAULT',
+	ADDITIONAL_STRIP = 'ADDITIONAL_STRIP'
+}

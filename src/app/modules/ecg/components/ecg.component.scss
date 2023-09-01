@@ -1,0 +1,392 @@
+@import '/src/app/sass/main';
+
+.ecg-container {
+    margin: 10px 0 25px 0;
+    background: $white;
+    border-radius: 4px;
+    border: 3px solid $gray100;
+    height: 100%;
+    width: 100%;
+}
+
+.ecg-container-highlighted {
+    border: 3px solid $indigo;
+    border-radius: 4px;
+}
+
+/* START CANVAS... */
+canvas {
+    display: block;
+}
+
+.canvas-window {
+    background: #111;
+}
+
+.line-scroll-container {
+    position: relative;
+}
+
+.line-outer-container {
+    position: relative;
+}
+
+.primary-window-scroll-container {
+    overflow-x: hidden;
+    margin: 0 0 5px 0;
+}
+
+.split-view {
+  min-width: 0.188em;
+}
+
+.mini-window-outer-container {
+    background: $white;
+    padding-bottom: 2px;
+
+    // Version B no mini line scrolling
+    &.no-scroll {
+        padding-bottom: 0;
+
+        .mini-window-inner-container {
+            padding-bottom: 0;
+        }
+
+        .mini-window-scroll-container {
+            overflow-x: hidden;
+        }
+    }
+}
+
+.mini-window-scroll-container {
+    // cursor: pointer;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    background: #111;
+
+    // NOTE: Three rules below are necessary to remove extra vertical spacing caused by .mini-window-inner-container display: inline-block
+    font-size: 0px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+}
+
+.mini-window-inner-container {
+    padding-bottom: 2px;
+    display: inline-block;
+
+    // NOTE: This is the DOM element padding needs to be added to for Version.C - dynamic left/right padding values are added in the actual template
+    // padding-left: 656px;
+    // padding-right: 656px;
+}
+
+.line-num-seconds {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: $white;
+    font-size: 14px;
+    padding: 0 5px 0 0;
+    z-index: 100;
+}
+
+.highlighter {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #ADF0F9;
+    opacity: 0.25;
+
+    &.fixed-highlighter {
+        // position: fixed;
+        z-index: 200;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        // margin: 0 auto;
+        top: auto;
+    }
+}
+
+.convert-button {
+  height: 31px;
+  width: 150px;
+  color: #565151;
+  font-weight: bold;
+  font-size: 14px;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* Primary Window Grid */
+.xy-grid {
+    position: absolute;
+    z-index: 30;
+}
+
+.x-grid {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.x-grid div {
+    width: 1px;
+    font-size: 0;
+    background: #787777;
+    opacity: .3;
+}
+
+.y-grid {
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+}
+
+.y-grid div {
+    height: 1px;
+    font-size: 0;
+    background: #787777;
+    opacity: .3;
+    margin-bottom: 48px;
+}
+
+.y-grid div:last-child {
+    margin-bottom: 0;
+}
+
+.arrow-container {
+    position: absolute;
+    width: 20px;
+    padding-top: 20px;
+    z-index: 50;
+}
+
+.arrow-container div {
+    display: none;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.arrow-container:hover div {
+    display: inline-block;
+}
+
+.arrow-container .mat-icon {
+    font-size: 16px;
+    color: #383EBD;
+}
+
+.left-arrow-container {
+    left: 0;
+    padding-left: 10px;
+}
+
+.right-arrow-container {
+    right: 0;
+    padding-right: 10px;
+}
+
+.ecg-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 16px;
+}
+
+.ecg-header-left {
+    margin-left: 0;
+}
+
+.ecg-header-right {
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > * {
+        margin-right: 5px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+
+// Styles specific to additional strip header
+.additional-strip-header {
+    display: flex;
+
+    > div {
+        align-self: flex-start;
+    }
+}
+
+.additional-strip-title {
+    color: $midnight;
+    font-size: 15px;
+    font-family: SoehneWebKraftig;
+    margin: 0 0 4px 0;
+}
+
+.additional-strip-date-time {
+    color: $midnight;
+    font-size: 12px;
+    font-family: SoehneWebKraftig;
+
+    span {
+        display: inline-block;
+    }
+}
+
+.additional-strip-date {
+    margin: 0 12px 0 0;
+}
+
+.additional-strip-title-left {
+    border-right: 1px solid $gray400;
+    margin: 0 20px 0 0;
+    padding: 0 20px 0 0;
+}
+
+.additional-strip-divider {
+    border-right: 1px solid $gray400;
+    height: 40px;
+    margin: 0px 15px 0 15px;
+
+}
+
+.additional-strip-reason {
+    margin-top: 1px;
+    font-size: 12px;
+    font-family: SoehneWebLeicht;
+    color: $gray450;
+}
+
+.ecg-circle-count {
+    background: $black;
+    color: $white;
+    font-family: SoehneWebKraftig;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    margin: 0 5px 0 0;
+    font-size: 14px;
+
+    span {
+        position: relative;
+        top: 5px;
+    }
+}
+
+
+// TODO: Let's move this to the ecg-info .scss file
+.ecg-info {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    // Label
+    span {
+        flex: 0 0 auto;
+        color: $gray700;
+        font-family: 'SoehneWebBuch';
+        font-weight: bold;
+        font-size: 14px;
+        display: block;
+        text-align: left;
+        margin: 0 0 3px 0;
+    }
+
+    // Value
+    li {
+        flex: 0 0 auto;
+        padding: 0;
+        margin: 0 40px 0 0;
+        color: $gray700;
+        // text-align: right;
+    }
+
+	.header-button {
+		font-weight: bold;
+		font-size: 14px;
+		display: block;
+		text-align: left;
+		margin: 0 0 5px 0;
+	}
+}
+
+.ecg-header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: right;
+    // gap: 15px;
+    padding-right: 0;
+}
+
+.reset-view {
+    cursor: pointer;
+    color: #0D6380;
+    font-size: 14px;
+
+    &:hover {
+
+    }
+}
+
+.context-menu {
+    visibility: hidden;
+    position: absolute;
+}
+// TODO: get rid of ::ng-deep it is deprecated and will disappear
+::ng-deep .strip-focus-menu {
+  background-color: #1f1f1f;
+
+  .mat-menu-content {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  button {
+    color: $white;
+    height: 28px;
+    width: 120px;
+    font-family: "DIN Next W01 Regular", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
+// TODO: get rid of ::ng-deep it is deprecated and will disappear
+::ng-deep  .mat-menu-panel {
+    .mat-menu-content {
+        width: 150px;
+    }
+}
+
+.action-menu-horizontal-window {
+    background: #5d5c5d;
+    border: none;
+    margin: 10px 5% 20px 5%;
+    height: .7px;
+}
+
+.ecg-action-expand-menu {
+    background: rgb(239, 239, 239);
+    border-radius: 4px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

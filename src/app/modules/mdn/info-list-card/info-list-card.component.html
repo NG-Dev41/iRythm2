@@ -1,0 +1,48 @@
+<div class="info-list-card">
+    <div class="info-list-card-header">
+        <ng-template [ngIf]="config.iconName">
+            <mat-icon class="info-list-icon" svgIcon="{{config.iconName}}"> </mat-icon>
+        </ng-template>
+
+        <h2 class="info-list-title"> {{config.title}} </h2>
+    </div>
+
+    <div class="info-list-parent-grid" [ngStyle]="{'grid-template-columns': numColumnsStyleString}">
+        <div *ngFor="let column of mappedData" class="info-list-child-grid" [ngStyle]="{'grid-template-rows': numRowsStyleString}">
+            <ng-container *ngFor="let datum of column">
+
+                <p class="list-card-key"
+                   [ngClass]="{
+                        'normal-row': !datum.boldedRow,
+                        'bolded-row': datum.boldedRow
+                    }">
+                        {{datum.key}}:
+                </p>
+
+                <div class="flex-row list-card-val">
+                    <div *ngIf="datum.boldedRow" class="circle blue-circle"></div>
+
+                    <p class=""
+                       [ngClass]="{
+                        'normal-row': !datum.boldedRow,
+                        'bolded-row': datum.boldedRow
+                    }">
+
+                        <ng-template [ngIf]="datum.val">
+                            {{datum.val}}
+                        </ng-template>
+                        <ng-template [ngIf]="!datum.val">
+                            N/A
+                        </ng-template>
+                    </p>
+                </div>
+
+
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+
+
+

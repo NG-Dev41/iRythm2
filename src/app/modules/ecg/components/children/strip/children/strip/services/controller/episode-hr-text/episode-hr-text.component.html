@@ -1,0 +1,5 @@
+<p *ngIf="config.ct.global.showHrType === ShowHRType.AVERAGE" class="ecg-hr-text">{{ecgDto.data.episode.averageHR | number: '1.0-0'}} bpm</p>
+
+<p *ngIf="config.ct.global.showHrType === ShowHRType.MAX" class="ecg-hr-text">{{ecgDto.data.episode.maxHR | number: '1.0-0'}} bpm</p>
+
+<p *ngIf="config.ct.global.showHrType === ShowHRType.MIN" class="ecg-hr-text">{{ecgDto.data.episode.minHR | number: '1.0-0'}} bpm</p>

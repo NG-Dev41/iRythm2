@@ -1,0 +1,14 @@
+<div
+	*ngIf="sanitizedUrl"
+	class="report-iframe-container">
+	<iframe
+		#pdfContainer
+		[src]="sanitizedUrl"
+		title="Report PDF">
+	</iframe>
+</div>
+
+<div class="record-loading-container">
+	<app-loading-spinner *ngIf="!sanitizedUrl" [loadingText]="'report.preview.loading' | translate"></app-loading-spinner> 
+</div>
+

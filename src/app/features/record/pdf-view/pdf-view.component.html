@@ -1,0 +1,29 @@
+<!-- Stripped down version of the header that doesn't rely on any external data -->
+<mat-toolbar
+    class="header-wrapper">
+
+    <!-- Header Top Bar -->
+    <mat-toolbar-row class="top-bar">
+
+		<span
+            class="header-title fw-400"
+            [innerHTML]="'report.pdfView.title' | translate">
+		</span>
+
+        <div class="header-border-line"></div>
+
+		<span class="datetime fw-500">
+			{{parsedDateTime | dfnsFormat: 'Pp'}}
+		</span>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<div
+	class="report-iframe-container">
+	<iframe
+		[src]="safeUrl"
+		title="Report PDF">
+	</iframe>
+</div>

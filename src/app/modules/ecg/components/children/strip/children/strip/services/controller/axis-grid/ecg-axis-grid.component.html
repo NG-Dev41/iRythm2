@@ -1,0 +1,32 @@
+
+<ng-container *ngIf="controller.componentLoadState == EcgComponentState.READY">
+
+    <div *ngFor="let gridLineArray of controller.verticalGridLines; let i = index">
+        <div
+                *ngFor="let spacing of gridLineArray; let j = index;"
+                class="ecg-axis-vertical-grid-line"
+                [style.height]="config.ct.line.height + 'px'"
+                [style.width]="config.ct.global.resolutionScale + 'px'"
+                [style.top]="config.ct.beats.lineHeight + i * (config.ct.beats.lineHeight + config.ct.line.height) + 'px'"
+                [style.left]="spacing + 'px'"
+                [style.backgroundColor]="config.ct.axisGrid.color">
+            &nbsp;
+        </div>
+    </div>
+
+    <!--
+        TODO: As you can clearly see 50 is hardcoded. This needs to be more dynamic but all these demension
+        calculations need to be cleaned up quite a bit. Moved into methods, etc..
+    -->
+    <div [style.top]="50 + 'px'">
+
+        <div
+            *ngFor="let lineSpacing of controller.horizontalGridLines"
+            class="ecg-axis-horizontal-grid-line"
+            [style.height]="config.ct.global.resolutionScale + 'px'"
+            [style.top]="lineSpacing + 'px'"
+            [style.backgroundColor]="config.ct.axisGrid.color">
+            &nbsp;
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,27 @@
+// @import '../../../../../sass/main';
+
+
+.ecg-nav-arrow {
+    position: absolute;
+    width: 30px;
+    z-index: 2000;
+}
+
+.ecg-nav-arrow div {
+    position: relative;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.ecg-nav-arrow .mat-icon {
+    padding-top: 2px;
+    padding-left: 1px;
+}
+
+.ecg-left-nav-arrow {
+    left: 0;
+}
+
+.ecg-right-nav-arrow {
+    right: 0;
+}

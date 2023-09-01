@@ -1,0 +1,49 @@
+<div class="patient-info-wrapper">
+    Patient Info
+
+    <mat-icon
+        class="patient-info-icon"
+        svgIcon="icon-info-outline-heavy-small-midnight"
+        [matMenuTriggerFor]="patientInfoMenu"
+        #patientInfoMenuTrigger="matMenuTrigger"
+        (mouseenter)="patientInfoMenuTrigger.openMenu()">
+    </mat-icon>
+
+    <mat-menu
+        #patientInfoMenu="matMenu"
+        class="mat-menu-panel patient-info-menu-panel"
+        overlapTrigger="true">
+
+        <dl (mouseleave)="patientInfoMenuTrigger.closeMenu()" (click)="$event.stopPropagation();">
+            <dt class="patient-info-key">AGE</dt>
+            <dd> {{recordDto.patientInfo.age}} </dd>
+
+            <dt>Primary Indication</dt>
+            <dd> {{recordDto.patientInfo.primaryIndication}} </dd>
+
+            <ng-template [ngIf]="recordDto.patientInfo.icdOrPacemaker">
+
+                <dt class="patient-info-key">ICD or Pacemaker?</dt>
+                <dd class="patient-info-value"> Yes</dd>
+
+                <dt class="patient-info-key">Lower Rate Limit</dt>
+                <dd> {{recordDto.patientInfo.lowerRateLimit}} </dd>
+
+                <dt class="patient-info-key">Upper Rate Limit</dt>
+                <dd> {{recordDto.patientInfo.upperRateLimit}} </dd>
+
+                <dt class="patient-info-key">Info Relevant for Analysis</dt>
+                <dd> {{recordDto.patientInfo.relevantInfo}} </dd>
+            </ng-template>
+
+            <ng-template [ngIf]="recordDto.patientInfo.icdOrPacemaker">
+                <dt class="patient-info-key">ICD or Pacemaker?</dt>
+                <dd> No</dd>
+            </ng-template>
+
+            <dt class="patient-info-key">Serial Number</dt>
+            <dd> {{recordDto.serialNumber}} </dd>
+        </dl>
+    </mat-menu>
+</div>
+

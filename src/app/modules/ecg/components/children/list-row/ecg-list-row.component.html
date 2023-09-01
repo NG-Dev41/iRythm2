@@ -1,0 +1,49 @@
+
+<!--
+    Outer most tile/long view row container.
+    Primary purpose is to toggle the view view class for either tile or long view
+-->
+
+<div [ngClass]="recordDto.ecgListLayoutType == EcgLayoutType.LIST ? 'ecg-long-view' : 'ecg-tile-view'">
+
+    <!-- First loop builds out a single row of tiles -->
+    <div class="ecg-row ecg-tile-view-row">
+
+        <div
+            *ngFor="let ecgCardConfig of ecgCardsSubset; let i = index"
+            class="ecg-col ecg-tile"
+            [ngClass]="activeEpisodeId == ecgCardConfig.data.episode.interval.startIndex ? 'ecg-tile-active' : ''"
+            (click)="openLongEpisodeView(ecgCardConfig.data.episode.interval.startIndex)">
+
+            <div class="ecg-tile-clickable-overlay"></div>
+
+            <app-ecg-split-duo
+                *ngIf="ecgCardConfig"
+                [initProperties]="ecgCardConfig">
+            </app-ecg-split-duo>
+
+        </div>
+    </div>
+
+    <!-- Second loop builds out a single row of long episode views associated with each tile view -->
+    <div class="ecg-row ecg-long-view-row">
+
+        <div
+            *ngFor="let ecgCardConfig of ecgCardsSubset; let i = index"
+            class="ecg-col ecg-long"
+            id="ecg-long-episode-{{i}}"
+            [ngStyle]="{'display': (activeEpisodeId == ecgCardConfig.data.episode.interval.startIndex || recordDto.ecgListLayoutType == EcgLayoutType.LIST) ? 'block' : 'none'}">
+
+            <div
+                *ngIf="activeEpisodeId == ecgCardConfig.data.episode.interval.startIndex"
+                class="ecg-active-long-episode">
+
+                <app-ecg2
+                    *ngIf="ecgCardConfig"
+                    [initProperties]="ecgCardConfig">
+                </app-ecg2>
+
+            </div>
+        </div>
+    </div>
+</div>

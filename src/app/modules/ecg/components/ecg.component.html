@@ -1,0 +1,124 @@
+
+<!-- isEpisodeHighlighted outlines the current strip in blue while in edit session -->
+<!-- Why is tabindex="0" being applied to every strip? Is that legit? -->
+<div
+	#ecgCardContainer
+    tabindex="0"
+	class="card ecg-container"
+    (mousedown)="multiSelectEcgCards($event)"
+    [class.ecg-container-highlighted]="isEpisodeHighlighted">
+
+		<div class="ecg-header">
+
+			<!--
+				Loading different strip headers based on the ViewType config param
+				Initially implemented to support the differences in the additional strip header
+			-->
+			<ng-container [ngSwitch]="config.ct.viewType">
+
+				<!-- START ADDITIONAL STRIP HEADER -->
+				<ng-container *ngSwitchCase="EcgViewType.ADDITIONAL_STRIP">
+
+					<div class="ecg-header-left additional-strip-header">
+
+						<div class="ecg-circle-count">
+							<span>{{dto.data.listIndex + 1}}</span>
+						</div>
+
+						<div class="additional-strip-title-left">
+							<div class="additional-strip-title">
+								{{dto.data.episode.additionalStrip.prePopulatedHeadingTitle}}
+							</div>
+
+							<div class="additional-strip-date-time">
+
+								<span class="additional-strip-date">
+									{{dto.data.episode.additionalStrip.startDateTime | date: 'MM/dd/yyyy'}}
+								</span>
+
+								<span class="additional-strip-time">
+									{{dto.data.episode.additionalStrip.startDateTime | date: 'hh:mm:ss a'}}
+								</span>
+							</div>
+						</div>
+
+						<div>
+							<div class="additional-strip-reason">
+								{{dto.data.episode.additionalStrip.ruleDescription}}
+							</div>
+						</div>
+					</div>
+
+					<!--
+					<div class="ecg-header-right">
+
+					</div>
+					-->
+
+				</ng-container>
+				<!-- END ADDITIONAL STRIP HEADER -->
+
+
+				<!-- START DEFAULT STRIP HEADER -->
+				<ng-container *ngSwitchDefault>
+
+					<div class="ecg-header-left">
+
+		                <!-- Info/Meta -->
+						<app-ecg-info
+							*ngIf="config.ct.info?.show"
+		                    [ecgCardConfig]="initProperties">
+						</app-ecg-info>
+					</div>
+
+					<div class="ecg-header-right">
+
+		                <!-- Gain Controls -->
+						<app-ecg-gain
+							*ngIf="config.ct.gain?.show">
+						</app-ecg-gain>
+
+						<!-- Toggle Min/Max/Onset/Offset -->
+						<app-ecg-toggle-min-max
+					        *ngIf="config.ct.toggleMinMax?.show">
+					    </app-ecg-toggle-min-max>
+
+					    <!-- Convert to Artifact -->
+						<app-ecg-convert-artifact
+					        *ngIf="config.ct.convertArtifact?.show">
+					    </app-ecg-convert-artifact>
+
+					    <!-- Toggle Expand View -->
+					    <!--
+					    <app-ecg-toggle-expand-view
+					        *ngIf="config.ct.toggleExpandView?.show">
+					    </app-ecg-toggle-expand-view>
+						-->
+
+					    <!-- Convert to Sinus -->
+						<app-ecg-convert-sinus
+					        *ngIf="config.ct.convertSinus?.show">
+					    </app-ecg-convert-sinus>
+
+					    <!-- Reset View -->
+					    <!--
+					    <app-ecg-reset-view
+					        *ngIf="config.ct.resetView?.show">
+					    </app-ecg-reset-view>
+						-->
+
+				        <!-- Action Menu -->
+				        <app-action-menu
+				            *ngIf="config.ct.actionMenu?.show">
+				        </app-action-menu>
+				    </div>
+				</ng-container>
+				<!-- END DEFAULT STRIP HEADER -->
+
+			</ng-container>
+
+	    </div>
+
+		<!-- Strips -->
+		<app-ecg-strips></app-ecg-strips>
+</div>

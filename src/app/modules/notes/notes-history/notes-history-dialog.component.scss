@@ -1,0 +1,131 @@
+
+@import '../../../sass/general/modal';
+@import '../../../sass/config/settings';
+
+
+.notes-modal {
+    max-height: 90vh;
+}
+
+.title {
+    font-family: 'SoehneWebKraftig';
+    font-size: 20px;
+}
+
+.gray-date {
+    color: $gray600;
+}
+
+.divider {
+    background-color: $gray300;
+    margin: auto -42px auto -42px;
+}
+
+.horizontal {
+    justify-content: flex-start;
+}
+
+.space {
+    width: 9px;
+}
+
+.note-text-content {
+    overflow: hidden;
+    position: sticky;
+}
+
+.note-text-area {
+    resize: none;
+    border-color: $gray300;
+    width: 100%;
+    height: 75%;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+
+.note-form-field {
+    height: 100%;
+}
+
+.note-form-field::-webkit-scrollbar {
+    display: none;
+}
+
+.pill {
+    border-radius: 160px;
+}
+
+h3 {
+    margin-bottom: 0.5rem;
+    margin-left: 0.3125rem;
+    margin-top: 0.5rem;
+}
+
+mat-card-subtitle {
+    display: flex;
+    flex-direction: row;
+    font-family: SoehneWebBuch;
+    margin-bottom: 16px;
+}
+
+mat-card {
+    background: $gray100;
+    padding: 16px;
+}
+
+mat-card-content {
+    padding-left: 1.688rem;
+    font-family: SoehneWebLeicht;
+    color: rgb(36,36,36);
+    font-size:14px;
+}
+
+mat-dialog-content {
+    height: 15rem;
+    width: 56rem;
+    color: $black !important;
+}
+
+mat-icon {
+    font-size: 19px;
+}
+
+button {
+    font-family: SoehneWebBuch;
+}
+
+
+
+::ng-deep {
+
+    .mdc-notched-outline__leading, .mdc-notched-outline__notch, .mdc-notched-outline__trailing{
+        border-color: $gray300;
+    }
+
+    .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-outline {
+        color: $gray300;
+        border-color: $gray300;
+    }
+
+    .mat-mdc-form-field-wrapper, .mat-mdc-form-field-flex, .mat-mdc-form-field-infix {
+        height: 100%;
+    }
+
+    .mat-mdc-form-field-infix {
+        padding: 11px 3px 8px 0;
+    }
+
+    .mdc-dialog__actions {
+        padding: 0px;
+    }
+
+    .mat-mdc-card {
+        margin-bottom: 0.5em;
+        box-shadow: none !important;
+    }
+
+    mat-error {
+        color: red;
+    }
+}

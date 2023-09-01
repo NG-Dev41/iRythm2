@@ -1,0 +1,56 @@
+@import '/src/app/sass/main';
+
+// Tile View
+.ecg-tile-view {
+
+    .ecg-tile-view-row {
+        display: flex;
+    }
+
+    .ecg-tile {
+        position: relative;
+        width: 520px;
+        margin-right: 10px;
+        padding: 10px 6px;
+        border-top: solid 3px transparent;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.ecg-tile-active {
+            background: $active-light-blue;
+            border-top: solid 3px $indigo;
+        }
+    }
+
+    .ecg-long {
+        display: none;
+    }
+}
+
+// List/Long View
+.ecg-long-view {
+
+    .ecg-long {
+        height: 100px;
+        margin: 5px;
+        display: block
+    }
+
+    .ecg-tile-view-row {
+        display: none;
+    }
+}
+
+.ecg-tile-clickable-overlay {
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+
+    // This value should probably be dynamic at some point. We would need to
+    // calculate the height of the tiles and add as an inline style.
+    height: 200px;
+}

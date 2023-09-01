@@ -1,0 +1,79 @@
+@import '../../../../../../../../../../sass/main';
+
+.ecg-psi-container {
+    position: absolute;
+    z-index: 300;
+    left: 0;
+    bottom: 0;
+    color: $psi-orange;
+    font-size: 13px;
+    display: none;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+/*
+    TODO: Maybe the design team will want this as some point (@Sam: you could bring it up)
+    Until then I wouldn't waste your time doing stuff like this. What the UX team says goes.
+ */
+
+// Gives outline to text
+// https://dev.to/codingdudecom/everything-about-stroke-text-in-css-561i
+// .smooth-16 {
+//     --stroke-width: 1px;
+//     --stroke-color: black;
+//     text-shadow: calc(var(--stroke-width) * 1) calc(var(--stroke-width) * 0) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * 0.9239) calc(var(--stroke-width) * 0.3827) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * 0.7071) calc(var(--stroke-width) * 0.7071) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * 0.3827) calc(var(--stroke-width) * 0.9239) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * 0) calc(var(--stroke-width) * 1) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * -0.3827) calc(var(--stroke-width) * 0.9239) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * -0.7071) calc(var(--stroke-width) * 0.7071) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * -0.9239) calc(var(--stroke-width) * 0.3827) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * -1) calc(var(--stroke-width) * 0) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * -0.9239) calc(var(--stroke-width) * -0.3827) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * -0.7071) calc(var(--stroke-width) * -0.7071) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * -0.3827) calc(var(--stroke-width) * -0.9239) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * 0) calc(var(--stroke-width) * -1) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * 0.3827) calc(var(--stroke-width) * -0.9239) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * 0.7071) calc(var(--stroke-width) * -0.7071) 0
+//     var(--stroke-color),
+//     calc(var(--stroke-width) * 0.9239) calc(var(--stroke-width) * -0.3827) 0
+//     var(--stroke-color);
+// }
+
+.ecg-psi-inner-container {
+    left: 0;
+    bottom: 0;
+    padding-bottom: 1px;
+}
+
+.ecg-psi-text {
+    position: relative;
+    left: 3px;
+    top: 3px;
+}
+
+.ecg-psi-border {
+    height: 6px;
+    background: transparent;
+    border: 2px dashed $psi-orange;
+    border-top: none;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+}

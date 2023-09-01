@@ -1,0 +1,57 @@
+
+<div class="in-progress-options">
+
+    <button [matMenuTriggerFor]="headerOptions">
+        <mat-icon>more_horiz</mat-icon>
+    </button>
+
+        <mat-menu #headerOptions="matMenu" class="app-mat-menu header-options-panel-position">
+
+        <button mat-menu-item
+            (click)="changePriorityToMdn()">
+            Change Priority To MDN
+        </button>
+
+        <div class="split-menu-item">
+
+            <button
+                class="split-menu-item__text"
+                [class.active]="isConsultationMenuOpened === true"
+                (mouseover)="closeConsultationMenu()"
+                (click)="placeOnHold(QueueAction.ON_HOLD)">
+                Place On Hold
+            </button>
+
+            <button
+                #consultationTrigger
+                mat-menu-item
+                [matMenuTriggerFor]="consultation"
+                class="split-menu-item__trigger"
+                (menuOpened)="isConsultationMenuOpened = true;"
+                (menuClosed)="isConsultationMenuOpened = false;"
+                >
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+
+        </div>
+
+        <div>
+            <mat-menu class="app-mat-menu mark-consultation-menu-header-options" #consultation="matMenu">
+
+                <button
+                    mat-menu-item
+                    (click)="placeOnHold(QueueAction.ON_HOLD_CONSULTATION)">
+                    Mark As Consultation
+                </button>
+
+            </mat-menu>
+        </div>
+
+        <button
+            mat-menu-item
+            (click)="openReasonDialog()">
+            Send to Full QA
+        </button>
+
+        </mat-menu>
+</div>

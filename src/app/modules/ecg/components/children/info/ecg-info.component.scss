@@ -1,0 +1,18 @@
+@import '../../../../../sass/config/settings';
+
+li {
+    height: 37.47px
+}
+.ecg-info-container, .tag-container{
+    display: flex;
+    align-items: center;
+}
+
+.tag{
+    margin-right: 5px;
+    padding: 4px 12px;
+    background: $gray200;
+    border-radius: 203px;
+    font-weight: normal;
+    font-size: 14px;
+}

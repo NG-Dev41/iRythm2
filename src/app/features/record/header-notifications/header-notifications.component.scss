@@ -1,0 +1,53 @@
+.parent-notifications-wrapper {
+    z-index: 1000;
+    overflow-x: hidden;
+    position: fixed;
+    left: 50%;
+    top: 1%;
+    transform: translateX(-50%);
+}
+
+.header-notifications-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    min-width: 100%;
+    overflow-y: visible;
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.snackbar {
+    display: flex;
+    gap: 36px;
+    border-radius: 4px;
+    word-break: normal;
+    white-space: normal;
+    padding: 10px 40px;
+    width: max-content;
+    font-family: SoehneWebBuch;
+    line-height: 150%;
+    size: 16px;
+    min-height: 44px;
+    height: fit-content;
+}
+
+.snackbar-link-hover {
+    cursor: pointer;
+}
+
+.snackbar-icon {
+    transform: scale(calc(2/3));
+    cursor: pointer;
+    margin-right: -20px;
+}
+
+.snackbar-text {
+    max-width: 540px;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+}

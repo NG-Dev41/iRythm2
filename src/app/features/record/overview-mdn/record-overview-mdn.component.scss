@@ -1,0 +1,24 @@
+.mdn-overview-container {
+    padding-top: 15px;
+    display:grid;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    grid-template-rows: 2fr minmax(267px, auto);
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+    "patch-notification patch-notification"
+    "patient-info account-info";
+    margin-bottom: 25px;
+}
+
+.patch-notification-card{
+    grid-area: patch-notification;
+}
+
+.patient-info-card {
+    grid-area: patient-info;
+}
+
+.account-info-card {
+    grid-area: account-info;
+}

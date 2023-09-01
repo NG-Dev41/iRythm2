@@ -1,0 +1,27 @@
+@import '../../../sass/config/settings';
+
+::ng-deep .mat-button-toggle-group.layout-button-toggle {
+
+    &.mat-button-toggle-group-appearance-standard {
+        border-radius: 50px;
+    }
+
+    .mat-icon {
+        color: $gray700;
+    }
+
+    .mat-button-toggle {
+
+        &.mat-button-toggle-checked {
+            background: $navy100;
+
+            .mat-icon {
+                color: $white;
+            }
+        }
+
+        .mat-button-toggle-label-content {
+            line-height: 35px;
+        }
+    }
+}

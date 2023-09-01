@@ -1,0 +1,9 @@
+<div class="patch-notification-card">
+    <div class="patch-notification-header">
+        <mat-icon class="patch-notification-icon" svgIcon="icon-mdn-patch-notification"> </mat-icon>
+        <h2 class="patch-notification-title">Patch Notification Criteria</h2>
+        <h2 class="patch-notification-effective-date">(Effective: {{this.recordDto.patchInfo.effectiveDate | dfnsFormat: 'P'}})</h2>
+    </div>
+    <app-patch-notification-table></app-patch-notification-table>
+</div>
+

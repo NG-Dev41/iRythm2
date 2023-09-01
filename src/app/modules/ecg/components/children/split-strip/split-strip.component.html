@@ -1,0 +1,19 @@
+<div
+    #ecgWidth
+    class="split-view-strip-duo"
+    (click)="selectEcgCard($event)"
+    [class.ecg-container-highlighted]="isEpisodeHighlighted">
+
+    <app-ecg-strip
+            class="top-strip"
+            [config]="stripConfigTop"
+            [cssContainerClass]="'parent-strip'"
+            [ecgCardConfig]="ecgCardConfig">
+    </app-ecg-strip>
+
+    <app-ecg-strip
+            class="bottom-strip"
+            [config]="stripConfigBottom"
+            [cssContainerClass]="'parent-strip'">
+    </app-ecg-strip>
+</div>

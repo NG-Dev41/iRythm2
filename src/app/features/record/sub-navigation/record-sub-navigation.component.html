@@ -1,0 +1,14 @@
+
+<div
+    *ngIf="pageDto.navigationSubTabs"
+    class="subnav-tab-group">
+
+    <div
+        *ngFor="let tab of pageDto.navigationSubTabs"
+        class="subnav-tab"
+        [ngClass]="(tab | activeNavSubTab) ? 'active-subnav-tab' : ''"
+        (click)="processNavItemClick(tab)">
+        {{tab.name | translate}}
+    </div>
+
+</div>

@@ -1,0 +1,10 @@
+@import '../../../../../sass/main';
+
+.strips-container {
+    width: 100%;
+    height: 100%;
+
+    &.additional-strips-container {
+        padding: 0 20px 15px 20px;
+    }
+}

@@ -1,0 +1,24 @@
+
+<!-- Heatmap -->
+<div
+    *ngIf="componentLoadState == ComponentLoadState.LOADED"
+    class="heatmap-wrapper"
+    #heatmapWrapper>
+    <app-header-heatmap class="heatmap-row-item"></app-header-heatmap>
+
+    <app-header-rhythm-summary class="heatmap-row-item"></app-header-rhythm-summary>
+</div>
+
+
+<!-- Ecg List Component -->
+<div
+    *ngIf="responseLoadState == ComponentLoadState.LOADED"
+    class="rhythm-page-ecg-list">
+
+    <app-ecg-list
+        [config]="ecgConfig">
+    </app-ecg-list>
+
+</div>
+
+

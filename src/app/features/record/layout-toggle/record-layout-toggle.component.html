@@ -1,0 +1,20 @@
+
+<mat-button-toggle-group
+    class="layout-button-toggle"
+    [value]="recordDto.ecgListLayoutType">
+
+    <!-- TILE TOGGLE -->
+    <mat-button-toggle
+        [value]="EcgLayoutType.TILE"
+        (click)="recordService.toggleEcgLayout(EcgLayoutType.TILE)">
+        <mat-icon>view_module</mat-icon>
+    </mat-button-toggle>
+
+    <!-- LIST/LONG EPISODE TOGGLE -->
+    <mat-button-toggle
+        [value]="EcgLayoutType.LIST"
+        (click)="recordService.toggleEcgLayout(EcgLayoutType.LIST)">
+        <mat-icon>view_stream</mat-icon>
+    </mat-button-toggle>
+
+</mat-button-toggle-group>

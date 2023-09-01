@@ -1,0 +1,26 @@
+<!-- Disable Overlay Div -->
+<div [disableOverlay]="recordDto.sidebar.hrBarDisabled || (isLoading | async)">
+    <div class="edit-bar-divider"></div>
+    <span class="edit-title">HR Bar Action</span>
+
+    <div class="edit-link-container">
+            <div class="edit-bar-button"
+               *ngFor="let actionType of HRBarActionType | keyvalue : editBarUtils.returnZero"
+               [ngClass]="{'edit-bar-button-active' : actionType.value === selected}"
+            (click)="selectActionType(actionType.value)">
+
+            <div class="edit-bar-button-text">
+                    {{HRBarActionTypeMeta[actionType.value].name ? HRBarActionTypeMeta[actionType.value].name : actionType.value}}
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Displays Keyboard Shortcut -->
+                <span
+                    class="shortcut"
+                    [innerHTML]="actionType.value | recordKeyboardShortcut : HRBarActionTypeMeta">
+            </span>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</div>

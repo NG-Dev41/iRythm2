@@ -1,0 +1,19 @@
+@import '/src/app/sass/main';
+
+.ecg-container-highlighted {
+    border: 3px solid $indigo;
+    border-radius: 6px;
+}
+
+.split-view-strip-duo {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-strip {
+    margin-bottom: 0;
+}
+
+.top-strip, .bottom-strip {
+    height: 100px;
+}

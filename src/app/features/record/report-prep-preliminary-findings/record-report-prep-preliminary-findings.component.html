@@ -1,0 +1,66 @@
+<div *ngIf="findings$ | async" class="report-findings-container">
+
+    <mat-autocomplete (optionSelected)="addFindingToList($event)"
+                      #auto="matAutocomplete"
+                      class="report-findings-autocomplete"
+                      [displayWith]="displayNull">
+
+        <mat-option *ngFor="let finding of filteredPossibleUserFindings | async"
+                    [value]="finding.value">
+            {{finding.value}}
+        </mat-option>
+
+    </mat-autocomplete>
+
+    <mat-form-field class="report-findings-form-field">
+
+        <mat-icon matPrefix svgIcon="icon-search-outline-heavy-medium-midnight" class=""></mat-icon>
+
+        <input class="report-findings-input fw-400"
+               #autocompleteInput
+               type="text"
+               placeholder="Search To Add More Preliminary Findings"
+               aria-label="Number"
+               matInput
+               [formControl]="ReportPreviewSearchBarControl "
+               [matAutocomplete]="auto">
+
+        <button *ngIf="ReportPreviewSearchBarControl.value.length > 0"
+                (click)="resetAutocomplete($event); autocompleteInput.blur()" mat-icon-button matSuffix
+                class="report-findings-close-button">
+
+            <mat-icon svgIcon="icon-close-outline-heavy-small-midnight"></mat-icon>
+
+        </button>
+    </mat-form-field>
+
+    <div class="report-findings-list-container">
+        <div *ngFor="let finding of findings$ | async" class="finding-wrapper">
+
+            <mat-icon *ngIf="finding.findingsType === FindingsType.USER_DEFINED"
+                      svgIcon="icon-order-findings"
+                      class="report-findings-reorder-icon"></mat-icon>
+
+            <div (focusout)="updateFinding(finding.key)"
+                 class="report-finding fw-400"
+                 [class]="isEditableMap.get(finding.key) ? 'editable-finding-wrapper' : 'non-editable-finding-wrapper'"
+                 [class.non-user-defined-wrapper]="finding.findingsType !== FindingsType.USER_DEFINED"
+                 (dblclick)="setEditable(finding.key, true, finding.findingsType)">
+
+                <textarea id="{{finding.key}}"
+                          #findingsTextArea
+                          rows="1"
+                          class="finding-textarea fw-400"
+                          tqaAutosizeTextArea
+                          [disabled]="isEditableMap.get(finding.key) ? null : true"
+                >{{finding.content | findingsMacroReplace:(keyValueMap$ | async)}}</textarea>
+
+                <mat-icon *ngIf="finding.findingsType === FindingsType.USER_DEFINED"
+                          svgIcon="icon-close-outline-heavy-small-indigo"
+                          class="report-findings-delete-finding-icon"
+                          (click)="deleteFinding(finding.key)"></mat-icon>
+
+            </div>
+        </div>
+    </div>
+</div>

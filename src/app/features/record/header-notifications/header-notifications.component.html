@@ -1,0 +1,20 @@
+<div class="parent-notifications-wrapper" #parentWrapper>
+    <div class="header-notifications-wrapper" #innerWrapper>
+        <div *ngFor="let snackbar of snackbars"
+             class="snackbar"
+             [style.background-color]="snackbar.backgroundColor"
+             [style.color]="snackbar.textColor"
+             (click)="snackbar.clickFunction ? snackbars.splice(snackbars.indexOf(snackbar), 1) : ''">
+
+            <p class="snackbar-text"
+               [class.snackbar-link-hover]="snackbar.clickFunction"
+               (click)="snackbar.clickFunction ? snackbar.clickFunction($event) : ''">
+                {{snackbar.text | translate}}
+            </p>
+
+            <mat-icon *ngIf="snackbar.shouldHaveCloseButton" (click)="snackbars.splice(snackbars.indexOf(snackbar), 1)" class="snackbar-icon" svgIcon="icon-close-outline-heavy-small-midnight"></mat-icon>
+
+        </div>
+
+    </div>
+</div>

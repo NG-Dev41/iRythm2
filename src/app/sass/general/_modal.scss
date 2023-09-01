@@ -1,0 +1,39 @@
+@import '../config/settings';
+
+    .mat-mdc-dialog-container {
+        --mdc-dialog-supporting-text-color: #{$gray700};
+    }
+
+    // this class must be added to the panelClass option for every modal we use
+
+    .modal-standard {
+        .mat-mdc-dialog-surface {
+                border-radius: 16px !important;
+                padding: 42px;
+            }
+
+        .mdc-dialog .mdc-dialog__content{
+            padding-left:0;
+            padding-right: 0;
+        }
+    }
+
+    // shifts the backdrop overlay behind the modal so that it doesn't cover the left sidebar
+    .backdrop-allow-nav {
+        position: fixed;
+        left: 285px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-content-no-scroll {
+        .mat-mdc-dialog-content {
+            max-height: none;
+            overflow: visible;
+        }
+    }
+
+    .mat-dialog-title{
+        margin: 0 0 20px;
+        display: block;
+    }

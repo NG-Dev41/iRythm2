@@ -1,0 +1,151 @@
+/* =========================
+COLORS
+========================= */
+
+/* Begin UX Figma Brand Colors */
+$black: #000000;
+$white: #FFFFFF;
+
+$psi-orange: #F58656;
+$indigo: #3738C0;
+$midnight: #172D3A;
+
+$gray100: #F6F7F7;
+$gray200: #ECEEEF;
+$gray300: #D1D5D7;
+$gray400: #B9C0C4;
+$gray450: #9e9e9d;
+$gray500: #748189;
+$gray600: #5B6670;
+$gray700: #323E48;
+$navy100: #274168;
+$navy200: #4866A2;
+$sage200: #8CA166;
+$lavender2: #A8B8F0;
+$sky200: #BFEBF0;
+$sand200: #E5D6B0;
+$rose200: #F5BDCC;
+$coral200: #F79E78;
+$lemonade200: #F7EBAB;
+
+$success-green: #49905C;
+$warning-yellow: #FFB941;
+$error-red: #FC032D;
+/* End UX Figma Brand Colors */
+
+/* Begin Figma Rhythm Colors */
+$ecg-background: #111111;
+$rhythm-sinus: #2B6DB0;
+$rhythm-svt: $white;
+$rhythm-af: #49CD0B;
+$rhythm-vbg: #842990;
+$rhythm-vtg: #EF7EBE;
+$rhythm-pause: #EC008C;
+$rhythm-avb-2nd: #C37244;
+$rhythm-avb-3rd: #BE9134;
+$rhythm-vt: #ED2938;
+$rhythm-vf: #FFDE17;
+$rhythm-ear: #7362D0;
+$rhythm-jr: #2D8185;
+$rhythm-ivr: #DB2D71;
+$rhythm-wenck: #8BCFF9;
+/* End Figma Rhythm Colors */
+
+/* Begin Figma Ectopy Colors */
+$ectopy-ve-singles: #E93823;
+$ectopy-ve-couplets: #C77646;
+$ectopy-ve-triplets: #FFDE17;
+$ectopy-sve-singles: #33CC00;
+$ectopy-sve-couplets: #FDFBDE;
+$ectopy-sve-triplets: #B41E8E;
+/* End Figma Ectopy Colors */
+
+$orange: #fd6b0d;
+$light-grey: #bebab9;
+$black: #231f20;
+
+$gold200: #faf0dc;
+$gold300: #f5c669;
+$gold400: #f4aa4f;
+$gold500: #f0aa54;
+$hazel300: #d9b382;
+$hazel400: #bd9059;
+$hazel500: #a57a45;
+$indigo100: #ebe9ff;
+$indigo300: #7770bf;
+$iRhythm100: #e6f4f7;
+$iRhythm200: #84d1e1;
+$iRhythm300: #0093b2;
+$iRhythm500: #0d6380;
+$iRhythm800: #07465b;
+$jade200: #cbe9da;
+$jade300: #85c79d;
+$mdn400: #4c43a5;
+$olive200: #e7f0ca;
+$olive300: #bac78f;
+$salmon100: #ffeadc;
+$salmon300: #ffbbae;
+$salmon200: #fbafa1;
+$salmon400: #ee774b;
+$scarlet400: #c43722;
+
+//patients
+$color-active-patient-status: $gold500;
+
+// Warning/error bullet points
+$warningModalYellow: #FFD14A;
+$errorModalRed: #F03C2D;
+
+//form
+$form-placeholder: #7c7b7b;
+$form-placeholder-focus: #7c7b7b;
+$form-option-border: $gray450;
+$form-option-background: $white;
+$form-option-background-selected: $iRhythm500;
+$form-option-background-selected-disabled: rgba(13, 99, 128, 0.4);
+$form-option-background-disabled: rgba(158, 158, 157, 0.4);
+$form-value: $gray600;
+$form-label: $gray600;
+$form-label-disabled: rgba(36, 36, 36, 0.4);
+$form-label-focus: $gray600;
+$input-border: #bababa;
+$input-border-focus: #bababa;
+$form-hint: $gray600;
+$form-error: $scarlet400;
+$form-accent: $iRhythm500;
+$form-accent-gray: rgba(209, 213, 215, 0.40);
+$form-box-shadow: rgba(0, 0, 0, 0.1);
+
+$active-light-blue: rgba(55, 56, 192, 0.3);
+$menu-item-hover-background: rgba(168, 184, 240, 0.1);
+
+/* =========================
+BREAKPOINTS
+========================= */
+$XS: 480px;
+$S: 668px;
+$M: 768px;
+$L: 1025px;
+$XL: 1441px;
+
+$HeaderS: 895px;
+$HeaderM: 1091px;
+$HeaderL: 1351px;
+$HeaderXL: 1488px;
+
+$tableOverflow: 1200px;
+
+/* =========================
+MEASUREMENTS
+========================= */
+$mobile-padding: 3%;
+$desktop-padding: 3%;
+
+/* =========================
+TYPE
+========================= */
+$DIN-reg: 'DIN Next W01 Regular', Arial, sans-serif;
+$DIN-bold: 'DIN Next LT W01 Bold', Arial, sans-serif;
+$DIN-light: 'DIN Next W01 Light', Arial, sans-serif;
+$DIN-medium: 'DIN Next W01 Medium', Arial, sans-serif;
+$DIN-con: 'DINNextW01-CondensedReg', Arial, sans-serif;

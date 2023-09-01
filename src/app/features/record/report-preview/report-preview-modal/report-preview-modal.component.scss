@@ -1,0 +1,35 @@
+@import 'app/sass/config/settings';
+
+.title {
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+.list {
+    padding-left: 0;
+}
+
+.list-item {
+    display: block;
+
+    // Custom li marker    
+    &:before {
+        content: "\2B24";  /* \2B24 is the CSS Code/unicode for big bullet */
+        //Weird font size needed to size the custom marker
+        font-size: .7rem;
+        display: inline-block;
+        width: 1.25rem;
+    }
+
+    &.warning:before {
+        color: $warningModalYellow;
+    }
+
+    &.error:before {
+        color: $errorModalRed;
+    }
+}
+
+.warning-block {
+    margin-top: 3rem;
+}

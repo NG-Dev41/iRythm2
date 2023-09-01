@@ -1,0 +1,91 @@
+<div class="notes-modal">
+
+    <h1 class="mat-dialog-title title">Notes History ({{ newNotesNumber }})</h1>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <mat-dialog-content class="mat-typography white-background">
+
+        <ng-container *ngFor="let note of notes$ | async">
+
+            <mat-card [class.mat-elevation-z0]="true">
+
+                <mat-card-title-group class="horizontal">
+
+                    <mat-card-subtitle class="black">
+
+                        <mat-icon aria-hidden="false"
+                                  aria-label="Perm Identity Icon icon"
+                                  style="vertical-align: -6px;">
+                            perm_identity
+                        </mat-icon>
+
+                        {{ note.user }}
+
+                    </mat-card-subtitle>
+
+                    <div class="space"></div>
+
+                    <div class="gray-date">
+                        {{ note.createdDate | date: dateFormat }}
+                    </div>
+
+                </mat-card-title-group>
+
+                <mat-card-content>{{ note.content }}</mat-card-content>
+
+            </mat-card>
+
+        </ng-container>
+
+    </mat-dialog-content>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <mat-dialog-content class="note-text-content">
+
+
+        <h3 class="mat-dialog-title title">Add Notes</h3>
+
+        <mat-form-field [formGroup]="form"
+                        appearance="outline"
+                        class="note-text-area">
+
+            <textarea class="note-text-area note-form-field"
+                      formControlName="note"
+                      matInput>
+            </textarea>
+
+            <!--        todo: look at abstracting mat-errors into own component -->
+            <mat-error *ngIf="formControl.hasError('required')">
+                Note is required before submission.
+            </mat-error>
+
+            <mat-error *ngIf="formControl.hasError('maxlength')">
+                Max length is 1000 characters.
+            </mat-error>
+
+            <mat-error *ngIf="formControl.hasError('pattern')">
+                No blank submissions
+            </mat-error>
+
+        </mat-form-field>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end" class="button-container-row">
+
+        <button (click)="close(false)"
+                class="btn-tertiary btn-md">
+            Cancel
+        </button>
+
+        <button (click)="addNote()"
+                [disabled]="!form.valid"
+                class="btn-primary btn-md">
+            Add
+        </button>
+
+    </mat-dialog-actions>
+
+</div>

@@ -1,0 +1,47 @@
+<div class="rhythm-summary-wrapper">
+    <h3 class="rhythm-summary-title"> SVT Summary (All Episodes) </h3>
+
+    <div class="rhythm-statistics-wrapper">
+        <div class="rhythm-statistic">
+            <p class="statistic-title">
+                Episodes
+            </p>
+
+            <h2 class="statistic-data">
+                {{this.rhythmsDto.response.heatMapResponse.heatMapSummaryMetrics.totalEpisodeCount | number: '1.0-0'}}
+            </h2>
+        </div>
+
+        <div class="rhythm-statistic">
+            <p class="statistic-title">
+                Longest Episode
+            </p>
+
+            <h2 class="statistic-data">
+                {{this.rhythmsDto.response.heatMapResponse.heatMapSummaryMetrics.longestEpisodeDuration | RecordLongestEpisodeTimeFormat}}
+            </h2>
+        </div>
+
+        <div class="rhythm-statistic">
+            <p class="statistic-title">
+                Average heart rate
+            </p>
+
+            <h2 class="statistic-data">
+                {{this.rhythmsDto.response.heatMapResponse.heatMapSummaryMetrics.averageHeartRate | number: '1.0-0'}} bpm
+            </h2>
+        </div>
+
+        <div class="rhythm-statistic">
+            <p class="statistic-title">
+                Heart rate range
+            </p>
+
+            <h2 class="statistic-data">
+                {{this.rhythmsDto.response.heatMapResponse.heatMapSummaryMetrics.slowestEpisodeRate | number: '1.0-0'}}-{{this.rhythmsDto.response.heatMapResponse.heatMapSummaryMetrics.fastestEpisodeRate | number: '1.0-0'}} bpm
+            </h2>
+        </div>
+    </div>
+
+    <p class="rhythm-summary-note">Note: Heart rates are calculated using single, beat-to-beat intervals.</p>
+</div>

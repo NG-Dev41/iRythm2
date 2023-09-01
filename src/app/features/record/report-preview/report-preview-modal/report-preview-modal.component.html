@@ -1,0 +1,44 @@
+<h1 class="title fw-500">{{'report.preview.modal.title' | translate}}</h1>
+
+<mat-dialog-content>
+
+    <ng-container *ngIf="data.errorList">
+        <p class="fw-500">
+            {{'report.preview.modal.errorSubhead' | translate}}
+        </p>
+    
+        <ul class="list">
+            <li class="list-item error" *ngFor="let error of data.errorList">{{'report.preview.modal.errorList.' + error.errorCode | translate: { data: getDisplayData(error) } }}
+                <ul *ngIf="error.errorCode === 'FINDINGS_INVALID_DATA_ERROR'">
+                    <li *ngFor="let findingError of getInvalidFindingsList(error)">{{findingError}}</li>
+                </ul>
+            </li>
+        </ul>
+    </ng-container>
+
+    <ng-container *ngIf="data.warningList">
+        <p [class.warning-block]="data.errorList" class="fw-500">
+            {{'report.preview.modal.warningSubhead' | translate}}
+        </p>
+    
+        <ul class="list">
+            <li class="list-item warning" *ngFor="let warning of data.warningList">{{'report.preview.modal.errorList.' + warning.errorCode | translate: { data: getDisplayData(warning) } }}</li>
+        </ul>
+    </ng-container>
+
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="!data.errorList" align="end" class="button-container-row">
+
+    <button class="btn-tertiary btn-md"
+            mat-dialog-close>
+        {{'report.preview.modal.button.cancel' | translate}}
+    </button>
+
+    <button class="btn-primary btn-md"
+            (click)="proceedWithReportGeneration()"
+            mat-dialog-close>
+            {{'report.preview.modal.button.proceed' | translate}}
+        </button>
+
+</mat-dialog-actions>

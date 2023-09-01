@@ -1,0 +1,22 @@
+<div class="leave-modal">
+
+    <div class="leave-title">{{leaveModalTitle}}</div>
+
+    <p class="leave-text">{{leaveModalText}}</p>
+
+    <mat-dialog-actions align="end" class="button-container-row">
+
+        <button
+            class="btn-tertiary btn-md"
+            (click)="stayOnPage()">
+            {{stayOnPageLinkText}}
+        </button>
+
+        <button
+            class="btn-primary btn-md"
+            (click)="leavePage()">
+            {{leavePageButtonText}}
+        </button>
+
+    </mat-dialog-actions>
+</div>

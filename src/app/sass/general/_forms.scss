@@ -1,0 +1,22 @@
+/* =========================
+Basic form styles
+========================= */
+// form styles outside of component
+
+@import '../config/settings';
+
+    .checkbox-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        mat-checkbox {
+            color: $gray700;
+        }
+    }
+
+
+// this is for mat-form-control outlines of the controls / inputs themselves
+.mdc-notched-outline__leading, .mdc-notched-outline__notch, .mdc-notched-outline__trailing{
+    border-color: $input-border !important;
+}

@@ -1,0 +1,34 @@
+<ng-container *ngIf="controller.componentLoadState == EcgComponentState.READY">
+
+    <div class="gain-control">
+
+        <div class="gain-container">
+
+            <button
+            	class="decrease-gain-button"
+            	(click)="controller.decreaseGain()" >
+            	-
+            </button>
+
+            <select
+            	#gainSelect
+            	class="gain-select"
+            	(change)="controller.setGainIndex(gainSelect.value)">
+
+                <option
+                	*ngFor="let gainOption of config.ct.gain.options; index as i"
+    				[selected]="i === config.ct.gain.selectedGainIndex"
+    				[value]="i">
+                    {{gainOption.percent}}%
+                </option>
+            </select>
+
+            <button
+            	class="increase-gain-button"
+            	(click)="controller.increaseGain()">
+            	+
+            </button>
+        </div>
+    </div>
+
+</ng-container>

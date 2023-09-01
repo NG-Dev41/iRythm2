@@ -1,0 +1,80 @@
+@import '../../../sass/config/settings';
+
+.record-findings-list {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 19px;
+    margin: 0 0px 0 5px;
+}
+
+// wrapper container styles
+.mat-chip-list-wrapper {
+    gap: 10px;
+    width:290px;
+}
+
+// list option styles
+mat-chip-option.findings-chip.mat-mdc-chip-option.mat-mdc-standard-chip{
+
+    border: 0.8px solid rgba(39, 65, 104, 0.45);
+    border-radius: 160px;
+    width: 64px;
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 160%;
+    font-family: SoehneWebBuch;
+    background-color: transparent !important;
+
+    // this hover rule is only applied to the parent element and does not cascade down to child elements
+    &:hover {
+        border: 0.8px solid $indigo !important;
+    }
+
+    // this hover rule applies to the parent element as well as all children
+    :hover{
+        cursor: pointer;
+    }
+
+    // label color
+    .mdc-evolution-chip__text-label{
+        color: $navy100;
+    }
+
+    // hide the focus overlay this is not needed
+    .mat-mdc-chip-focus-overlay{
+        display: none;
+    }
+
+    // child button styling
+    .mdc-evolution-chip__action--primary {
+        padding:0;
+        width:100%;
+        height:101%;
+    }
+
+    //hide the check-mark
+    .mdc-evolution-chip__graphic{
+        display: none;
+    }
+
+    //selected state
+    &.mat-mdc-chip-selected{
+
+        .mdc-evolution-chip__text-label{
+            color: $indigo;
+        }
+
+        background:rgba(55, 56, 192, 0.09) !important;
+        border: 0.8px solid rgba(55, 56, 192, 0.8);
+
+    }
+
+}
+
+
+
+
+
+

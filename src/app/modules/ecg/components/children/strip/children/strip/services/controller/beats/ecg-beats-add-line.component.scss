@@ -1,0 +1,15 @@
+// @import '../../../../../sass/main';
+
+.ecg-beat-add-line-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    pointer-events: none;
+    font-size: 0;
+    display: none;
+}
+
+.ecg-beat-add-line {
+	font-size: 0;
+}

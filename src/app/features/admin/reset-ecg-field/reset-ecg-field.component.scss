@@ -1,0 +1,16 @@
+
+// TODO: get rid of ::ng-deep it is deprecated and will disappear
+::ng-deep .reset-ecg-form-field {
+    .mat-form-field-flex {
+        align-items: flex-start;
+    }
+}
+
+.submit-button {
+    background: #383EBD;
+    color: white;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}

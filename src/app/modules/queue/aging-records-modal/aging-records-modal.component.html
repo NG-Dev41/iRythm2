@@ -1,0 +1,22 @@
+<h1 class="aging-records-title"> Prioritize On-Hold Records </h1>
+
+<mat-dialog-content>
+
+    <p class="aging-records-secondary"> Please prioritize the on-hold records before starting a new record. </p>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="button-container-row">
+
+    <button (click)="startNewRecord()"
+            class="btn-primary btn-md aging-records-start-new"
+            mat-dialog-close>
+        Start A New Record Anyway
+    </button>
+
+    <button class="btn-primary btn-md aging-records-close"
+            mat-dialog-close>
+        Okay
+    </button>
+
+</mat-dialog-actions>

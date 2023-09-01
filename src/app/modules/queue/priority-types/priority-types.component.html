@@ -1,0 +1,23 @@
+<!-- Queue Record Priority Types -->
+<div class="parent">
+<ng-container *ngIf="record.priority === QueueRecordPriority.REGULAR || record.priority === QueueRecordPriority.STANDARD">
+    <div class="pill grey-pill">Routine</div>
+</ng-container>
+
+<ng-container *ngIf="record.priority === QueueRecordPriority.MD_NOTIFY || record.priority === QueueRecordPriority.MDN_FOLLOW_UP">
+    <div class="pill red-pill">MDN</div>
+</ng-container>
+
+<ng-container *ngIf="record.priority === QueueRecordPriority.PRIORITY_REQUEST">
+    <div class="pill red-pill">Priority</div>
+</ng-container>
+
+<ng-container *ngIf="record.expedited">
+    <div class="pill yellow-pill">Expedited</div>
+</ng-container>
+
+<ng-container *ngIf="record.consultation">
+    <div class="pill blue-pill">Consultation</div>
+</ng-container>
+
+</div>

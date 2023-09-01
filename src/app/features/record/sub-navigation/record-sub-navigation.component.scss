@@ -1,0 +1,19 @@
+@import '../../../sass/config/settings';
+.subnav-tab-group {
+
+}
+
+.subnav-tab {
+    display: inline-block;
+    font-family: SoehneWebKraftig;
+    color: $gray400;
+    font-size: 20px;
+    padding: 18px 30px 14px 30px;
+    border-bottom: 4px solid $white;
+    cursor: pointer;
+
+    &.active-subnav-tab, &:hover {
+        color: $indigo;
+        border-bottom: 4px solid $indigo;
+    }
+}

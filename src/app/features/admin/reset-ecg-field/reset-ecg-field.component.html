@@ -1,0 +1,10 @@
+<form class="form-group" #f="ngForm" (ngSubmit)="resetEcg(f)" novalidate>
+    <mat-form-field appearance="fill" class="reset-ecg-form-field" >
+        <mat-label for="reset-ecg">ECG Serial Number</mat-label>
+        <input matInput id="reset-ecg" name="serialNumber" type="text" [(ngModel)]="serialNumber" (input)="resetMessage()" >
+        <button type="submit" class="submit-button" matSuffix mat-flat-button>
+            Reset ECG
+        </button>
+    </mat-form-field>
+    <app-admin-form-message *ngIf="responseMessage" [messageType]="responseMessageType" [message]="responseMessage"></app-admin-form-message>
+</form>

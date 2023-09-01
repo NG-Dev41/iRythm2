@@ -1,0 +1,16 @@
+
+<!-- Beat Add Line -->
+<div
+    #beatAddLine
+    class="ecg-beat-add-line-container"
+    [style.top]="stripConfig.ct.beats.addLineElementTop + 'px'"
+    [style.left]="stripConfig.ct.beats.addLineElementLeft + 'px'"
+    [style.width]="lineWidth + 'px'">
+
+    <div
+        class="ecg-beat-add-line"
+        [style.height]="stripConfig.ct.line.height + 'px'"
+        [style.width]="lineWidth + 'px'"
+        [style.backgroundColor]="stripConfig.ct.beats.tickColor">
+    </div>
+</div>

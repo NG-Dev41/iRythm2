@@ -1,0 +1,40 @@
+<!-- Disable Overlay Div -->
+<div [disableOverlay]="recordDto.sidebar.hrBarDisabled || (isLoading | async)">
+    <div class="edit-bar-divider"></div>
+
+    <span class="edit-title">Mark Ectopy</span>
+
+    <div class="edit-link-container">
+        <div
+        class="edit-bar-button"
+        *ngFor="let ectopicType of ectopicTypes$ | async"
+        [ngClass]="{'edit-bar-button-active' : ectopicType === selected}"
+        (click)="submitEdit(ectopicType)"
+        >
+
+            <div class="rectangle-container">
+                <div
+                    class="rectangle"
+                    [style.background]="editBarUtils.getRectangleColor(EctopicTypeMeta, ectopicType)">
+                </div>
+            </div>
+
+            <div class="edit-bar-button-text">
+            {{EctopicTypeMeta[ectopicType].abbreviation ? EctopicTypeMeta[ectopicType].abbreviation : ectopicType}}
+            </div>
+
+            <span class="bubble"
+                *ngIf="(RecordMetricType.ECTOPICS | recordMetric : ectopicType : recordDto.metrics) > 0">
+            {{RecordMetricType.ECTOPICS | recordMetric : ectopicType : recordDto.metrics}}
+            </span>
+
+            <div class="divider"></div>
+
+            <!-- Displays Keyboard Shortcut -->
+            <span
+                class="shortcut"
+                [innerHTML]="ectopicType | recordKeyboardShortcut : EctopicTypeMeta">
+            </span>
+        </div>
+    </div>
+</div>

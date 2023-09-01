@@ -1,0 +1,7 @@
+<ng-container *ngIf="controller.componentLoadState === EcgComponentState.READY">
+    <div class="button toggle-expand-view-button">
+        <button (click)="controller.toggleSplitView()">
+            {{config.ct.toggleExpandView.view}}
+        </button>
+    </div>
+</ng-container>

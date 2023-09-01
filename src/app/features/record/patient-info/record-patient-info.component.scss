@@ -1,0 +1,43 @@
+dt {
+    font-family: 'SoehneWebKraftig';
+    font-size: 14px;
+    margin: 0 0 4px 0;
+}
+
+dd {
+    font-size: 14px;
+    margin: 0 0 17px 0;
+}
+
+dd:last-child {
+    margin: 0;
+}
+
+
+dl {
+    margin: 0;
+}
+
+.patient-info-wrapper {
+    display: flex;
+    gap: 3px;
+    font-family: 'SoehneWebKraftig';
+    font-size: 16px;
+}
+
+.patient-info-icon {
+    height: 100%;
+    width: 16px;
+    margin-top: 3px;
+}
+
+// TODO: get rid of ::ng-deep it is deprecated and will disappear
+::ng-deep .mat-menu-panel.patient-info-menu-panel {
+    border-radius: 10px;
+    padding: 14px 16px 14px 16px;
+
+}
+
+::ng-deep .mat-menu-content:not(:empty) {
+    padding: 0 !important;
+}
