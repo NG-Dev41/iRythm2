@@ -11,7 +11,7 @@ import {
 } from '../enums';
 
 import {
-	IEcgAnalyzerAnalyzeRequest,
+    IEcgAnalyzerAnalyzeRequest,
     IEcgGainOption,
     IEpisode,
     IEcgBaseMetaData,
@@ -122,7 +122,7 @@ export interface IEcgConfigStripsInput {
  */
 export interface IEcgConfigStrip extends IEcgConfigStripInput {
 
-	width?: number
+    width?: number
 
     parent?: IEcgConfigStrip;
 
@@ -138,11 +138,11 @@ export interface IEcgConfigStrip extends IEcgConfigStripInput {
 
     primaryEpisodeIndicator?: IEcgConfigPrimaryEpisodeIndicator;
 
-	focusIndicator?: IEcgConfigFocusIndicator;
+    focusIndicator?: IEcgConfigFocusIndicator;
 
     axisGrid?: IEcgConfigAxisGrid;
 
-	episodeDurationText?: IEcgEpisodeDurationText
+    episodeDurationText?: IEcgEpisodeDurationText
 
     html?: IEcgConfigStripHtmlElements;
 
@@ -176,8 +176,8 @@ export interface IEcgConfigStripInput {
 
 
 export interface IEcgConfigFocusIndicator {
-	show: boolean;
-	duration: number;
+    show: boolean;
+    duration: number;
 }
 
 /**
@@ -229,7 +229,7 @@ export interface IEcgConfigGlobal extends IEcgConfigGlobalInput {
 export interface IEcgConfigGlobalInput {
     //width?: number;
     //episodes?: Array<ISurroundingEpisode>;
-	episodes?: Map<string, Array<ISurroundingEpisode>>;
+    episodes?: Map<string, Array<ISurroundingEpisode>>;
 }
 
 
@@ -261,7 +261,7 @@ export interface IEcgConfigBeatsInput {
     tickTop?: number;
     addLineElement?: HTMLElement;
     addLineElementLeft?: number;
-	addLineElementTop?: number;
+    addLineElementTop?: number;
     ectopicStrokeWidth?: number;
     ectopicTickHeight?: number;
 }
@@ -270,10 +270,10 @@ export interface IEcgConfigBeatsInput {
  * Config object for beats
  */
 export interface IEcgConfigLine extends IEcgConfigLineInput {
-	/**
-	 * Height of canvas
-	 */
-	height: number;
+    /**
+     * Height of canvas
+     */
+    height: number;
 }
 export interface IEcgConfigLineInput {
 }
@@ -403,10 +403,10 @@ export interface IEcgConfigStripGlobal extends IEcgConfigStripGlobalInput {
      */
     numTotalSeconds?: number;
 
-	/**
-	 * Number of seconds viewable in the strip
-	 */
-	numSecondsViewable?: number;
+    /**
+     * Number of seconds viewable in the strip
+     */
+    numSecondsViewable?: number;
 
     /**
      * Amount of pixels to assign the top property of the canvas when tile view
@@ -429,15 +429,15 @@ export interface IEcgConfigStripGlobalInput {
 
 
 
-	/**
-	 * Force a certain number of seconds to show in the windows
-	 * Ex. We are forcing a 30 second view in the child/mini windows
-	 *
-	 * TODO: Is this doing what the preComputedSubRegionList should be doing, or is it seperate?
-	 * @type {number}
-	 */
+    /**
+     * Force a certain number of seconds to show in the windows
+     * Ex. We are forcing a 30 second view in the child/mini windows
+     *
+     * TODO: Is this doing what the preComputedSubRegionList should be doing, or is it seperate?
+     * @type {number}
+     */
 
-	forcedNumSecondsViewable?: number;
+    forcedNumSecondsViewable?: number;
 
     /**
      * [EcgRhythmType description]
@@ -451,23 +451,23 @@ export interface IEcgConfigStripGlobalInput {
      */
     bgColor?: string;
 
-	region?: string;
+    region?: string;
 
-	subRegion?: SubRegion;
+    subRegion?: SubRegion;
 
-	sampleCursorResultKey?: string;
+    sampleCursorResultKey?: string;
 
-	showHrType?: ShowHRType;
+    showHrType?: ShowHRType;
 
-	rowIntervals?: IEcgEpisodeInterval[];
+    rowIntervals?: IEcgEpisodeInterval[];
 
-	disableEditSessionCommitting?: boolean;
+    disableEditSessionCommitting?: boolean;
 }
 
 export enum ShowHRType {
-	MAX="MAX",
-	AVERAGE="AVERAGE",
-	MIN="MIN"
+    MAX = "MAX",
+    AVERAGE = "AVERAGE",
+    MIN = "MIN"
 }
 
 
@@ -483,7 +483,7 @@ export interface IEcgConfigAxisGridInput {
 }
 
 export interface IEcgEpisodeDurationText {
-	show?: boolean;
+    show?: boolean;
 }
 
 /**
@@ -536,9 +536,15 @@ export interface IEcgConfigGain extends IEcgConfigGainInput {
     selectedGainIndex?: number;
     selectedGainValue?: number;
 }
+
 export interface IEcgConfigGainInput {
     baseOptions?: Array<number>;
     show: boolean;
+    defaultGainIndex?: number;
+    selectedGainIndex?: number;
+    selectedGainValue?: number;
+    options?: { gain: number; percent: number }[];
+    isValueChangedFromHeader?: boolean
 }
 
 

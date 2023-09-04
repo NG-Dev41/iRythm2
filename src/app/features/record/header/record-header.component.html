@@ -1,46 +1,62 @@
-
 <!--
     TODO: Should we be adding the box shadow like this? Should have some sort of config prop on a dto
     that could be toggled (in this case if there's a sort type or not).
 
     Thoughts??
 -->
-<mat-toolbar
-    class="header-wrapper"
+<mat-toolbar class="header-wrapper"
     [style.box-shadow]="!route.params['sortType'] ? 'box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05)' : ''">
 
     <!-- Header Top Bar -->
     <mat-toolbar-row class="top-bar">
 
-		<!-- TODO: Should we have a seperate component for the page title? Probably... -->
-		<span
-            class="header-title"
-            [innerHTML]="pageDto.meta.title">
-		</span>
+        <!-- TODO: Should we have a seperate component for the page title? Probably... -->
+        <span class="header-title" [innerHTML]="pageDto.meta.title">
+        </span>
 
         <div class="header-border-line"></div>
 
-        <app-record-patient-info ></app-record-patient-info>
-        
+        <app-record-patient-info></app-record-patient-info>
+
         <div class="right-sidebar-wrapper">
             <app-record-findings *ngIf="!(pageDto.key === 'REPORT_PREVIEW')"></app-record-findings>
 
             <app-record-approve-report *ngIf="showRecordApproveSection"></app-record-approve-report>
-    
+
             <div class="header-border-line"></div>
-    
+
+            <div class="gain-control">
+                <div class="gain-container">
+                    <button class="decrease-gain-button" (click)="decreaseSelectedIndex()">
+                        -
+                    </button>
+
+                    <select #gainSelect class="gain-select" (change)="setGainIndex(gainSelect.value)">
+
+                        <option *ngFor="let gainOption of defaultHeaderGain?.options; index as i"
+                            [selected]="i === defaultHeaderGain?.selectedGainIndex" [value]="i">
+                            {{gainOption.percent}}%
+                        </option>
+                    </select>
+
+                    <button class="increase-gain-button" (click)="increaseSelectedIndex()">
+                        +
+                    </button>
+                </div>
+            </div>
+
+            <div class="header-border-line"></div>
+
             <app-record-undo></app-record-undo>
-    
+
             <div class="header-border-line"></div>
-    
-            <app-header-options></app-header-options>    
+
+            <app-header-options></app-header-options>
         </div>
 
     </mat-toolbar-row>
 
-    <mat-toolbar-row
-        *ngIf="!pageDto.meta.hideSubheader"
-        class="navigation-bar">
+    <mat-toolbar-row *ngIf="!pageDto.meta.hideSubheader" class="navigation-bar">
 
         <app-record-sub-navigation></app-record-sub-navigation>
 

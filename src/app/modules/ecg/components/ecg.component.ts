@@ -1,10 +1,16 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation , ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 
 import { EcgController } from 'app/modules/ecg/services/controller/ecg/ecg-controller.service';
 
 import {
-	EcgDaoEditChannelStatus, IEcgCardConfig, IEcgConfig, IEcgControllerInit, IEcgDaoEditChannel, IEcgEpisodeInterval,
-	IEcgListContextMenuAction, IEcgListContextMenuChannel
+    EcgDaoEditChannelStatus,
+    IEcgCardConfig,
+    IEcgConfig,
+    IEcgControllerInit,
+    IEcgDaoEditChannel,
+    IEcgEpisodeInterval,
+    IEcgListContextMenuAction,
+    IEcgListContextMenuChannel,
 } from 'app/modules/ecg/interfaces';
 import { EcgDaoChannelKey, EcgListChannelKey, EcgViewType } from '../enums';
 import { EcgNotifier } from 'app/modules/ecg/services/notifier/ecg/ecg-notifier.service';
@@ -20,6 +26,8 @@ import { RecordChannelKey } from '../../../features/record/services/enums';
 import { RightColModalAction, RightColModalType } from '../../../features/record/services/interfaces/channel.interface';
 import { RecordNotifier } from '../../../features/record/services/notifiers/record-notifier.service';
 import { QA_DATE_FORMAT } from 'app/commons/constants/common.const';
+import { HeaderEcgGainControllerService } from 'app/features/record/header/services/header-ecg-gain-controller.service';
+import { EcgGainController } from './children/gain/services/controller/ecg-gain-controller.service';
 
 /**
  * EcgComponent
@@ -33,25 +41,17 @@ import { QA_DATE_FORMAT } from 'app/commons/constants/common.const';
     templateUrl: './ecg.component.html',
     styleUrls: ['./ecg.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [
-        EcgController,
-        EcgUtils,
-        EcgDto,
-        EcgConfigDto,
-        EcgNotifier
-    ]
+    providers: [EcgController, EcgGainController, EcgUtils, EcgDto, EcgConfigDto, EcgNotifier],
 })
 export class EcgComponent implements OnInit, OnDestroy {
-
-
     // Incoming init properties used to initialize the Ecg and all related components
     @Input()
     public initProperties: IEcgCardConfig;
 
     // TODO: This maybe needs a more accurate name (isActiveStrip || isActiveEcg) and should exist on a DTO
-	public isEpisodeHighlighted: boolean = false;
+    public isEpisodeHighlighted: boolean = false;
 
-    private allSubscriptions:Subscription = new Subscription();
+    private allSubscriptions: Subscription = new Subscription();
 
     private initTimeout: ReturnType<typeof setTimeout>;
 
@@ -61,78 +61,88 @@ export class EcgComponent implements OnInit, OnDestroy {
     // For use in template
     public QA_DATE_FORMAT = QA_DATE_FORMAT;
 
-
-	/**
-	 * Ctor
-	 *
-	 * @param controller
-	 * @param notifier
-	 * @param config
-	 * @param dto
-	 * @param ecgUtils
-	 * @param daoNotifier
-	 * @param listNotifier
-	 */
-	public constructor(
+    /**
+     * Ctor
+     *
+     * @param controller
+     * @param notifier
+     * @param config
+     * @param dto
+     * @param ecgUtils
+     * @param daoNotifier
+     * @param listNotifier
+     */
+    public constructor(
         public controller: EcgController,
-	    public notifier: EcgNotifier,
-	    public config: EcgConfigDto,
-	    public dto: EcgDto,
+        public gainController: EcgGainController,
+        public notifier: EcgNotifier,
+        public config: EcgConfigDto,
+        public dto: EcgDto,
         private ecgUtils: EcgUtils,
         private daoNotifier: EcgDaoNotifier,
-	    private listNotifier: EcgListNotifier,
+        private listNotifier: EcgListNotifier,
         private sidebarService: RecordSidebarService,
         private sessionEditService: RecordSessionEditService,
-		private recordNotifier: RecordNotifier
-    ) {}
+        private recordNotifier: RecordNotifier,
+        private headerEcgGainController: HeaderEcgGainControllerService
+    ) { }
 
     /**
      * OnInit
      */
     public ngOnInit(): void {
+        // Update the episode data on edit, which will update the ecg-card-info
+        this.allSubscriptions.add(
+            this.daoNotifier.listen(EcgDaoChannelKey.DAO_EDIT).subscribe((data: IEcgDaoEditChannel) => {
+                if (data.status === EcgDaoEditChannelStatus.EDIT_PROCESSING_COMPLETE) {
+                    for (let episode of data.response.potentialImpactedEpisodeList) {
+                        let curEpisodeInterval = this.dto.data.episode.interval;
+                        if (
+                            episode.interval.startIndex === curEpisodeInterval.startIndex &&
+                            episode.interval.endIndex === curEpisodeInterval.endIndex
+                        ) {
+                            Object.assign(this.dto.data.episode, episode);
+                        }
+                    }
+                }
+            })
+        );
 
-		// Update the episode data on edit, which will update the ecg-card-info
-		this.allSubscriptions.add(this.daoNotifier.listen(EcgDaoChannelKey.DAO_EDIT).subscribe((data: IEcgDaoEditChannel) => {
-			if(data.status === EcgDaoEditChannelStatus.EDIT_PROCESSING_COMPLETE) {
-
-				for(let episode of data.response.potentialImpactedEpisodeList) {
-					let curEpisodeInterval = this.dto.data.episode.interval;
-					if(episode.interval.startIndex === curEpisodeInterval.startIndex
-						&& episode.interval.endIndex === curEpisodeInterval.endIndex) {
-						Object.assign(this.dto.data.episode, episode);
-					}
-				}
-
-			}
-		} ));
-
-		// this notification is sent by the EcgListController service
-		this.allSubscriptions.add(this.listNotifier.listen( EcgListChannelKey.CONTEXT_MENU ).subscribe( ( data: IEcgListContextMenuChannel ) => {
-			if( data.action === IEcgListContextMenuAction.UPDATE_HIGHLIGHTING && data.highlightedIntervals ) {
-				this.isEpisodeHighlighted = data.highlightedIntervals.has( this.dto.data.episode.interval );
-			}
-		}));
-
+        // this notification is sent by the EcgListController service
+        this.allSubscriptions.add(
+            this.listNotifier.listen(EcgListChannelKey.CONTEXT_MENU).subscribe((data: IEcgListContextMenuChannel) => {
+                if (data.action === IEcgListContextMenuAction.UPDATE_HIGHLIGHTING && data.highlightedIntervals) {
+                    this.isEpisodeHighlighted = data.highlightedIntervals.has(this.dto.data.episode.interval);
+                }
+            })
+        );
 
         this.initTimeout = setTimeout(() => {
-
             // 1255px
             // TODO: RM - this.cardWidth.nativeElement.offsetWidth is maybe 10px greater than it needs to be. why?
-            this.controller.processConfig(
-                this.initProperties.config as IEcgConfig
-            );
+            this.controller.processConfig(this.initProperties.config as IEcgConfig);
 
             // Set up DTO (Data Transfer Object)
             this.dto.setData(this.initProperties.data);
 
+            this.headerEcgGainController.addECGConfig({
+                listIndex: this.initProperties.data.listIndex,
+                gain: { ...this.initProperties.config.gain, isValueChangedFromHeader: false },
+            });
+
+            this.headerEcgGainController.$gainChanged.subscribe((d) => {
+                this.initProperties.config.gain.selectedGainIndex =
+                    this.headerEcgGainController.defaultHeaderGain.selectedGainIndex;
+                this.gainController.setGainIndex(
+                    this.headerEcgGainController.defaultHeaderGain.selectedGainIndex.toString()
+                );
+            });
+
             // Use the input init properties to initialize our ecg data
             // This will be building out top level ecg functionality needed by child component to do their jobs
-            this.controller
-                .init()
-                .subscribe((response: IEcgControllerInit) => {
-                    this.ecgUtils.ready(this.controller);
-                });
-
+            this.controller.init().subscribe((response: IEcgControllerInit) => {
+                this.ecgUtils.ready(this.controller);
+            });
         }, 1);
     }
 
@@ -145,27 +155,24 @@ export class EcgComponent implements OnInit, OnDestroy {
         clearTimeout(this.initTimeout);
     }
 
-
     /**
      * Multi Select Cards
      * @param $event
      */
-	public multiSelectEcgCards($event: MouseEvent ) {
+    public multiSelectEcgCards($event: MouseEvent) {
+        if ($event.button === 0 && $event.shiftKey) {
+            this.recordNotifier.send(RecordChannelKey.OPEN_RIGHT_COL_MODAL, {
+                action: RightColModalAction.OPEN_MODAL,
+                type: RightColModalType.MULTILINE_STRIP_MODAL,
+                initProperties: {
+                    ecgCardConfig: this.initProperties,
+                },
+            });
+        }
 
-		if($event.button === 0 && $event.shiftKey ) {
-			this.recordNotifier.send(RecordChannelKey.OPEN_RIGHT_COL_MODAL, {
-				action: RightColModalAction.OPEN_MODAL,
-				type: RightColModalType.MULTILINE_STRIP_MODAL,
-				initProperties: {
-					ecgCardConfig: this.initProperties
-				}
-			})
-		}
-
-	    // $event.button 0 is left mouse button
+        // $event.button 0 is left mouse button
         // represents left mouse click with ctrlKey down
-		if( $event.button === 0 && $event.ctrlKey ) {
-
+        if ($event.button === 0 && $event.ctrlKey) {
             // EcgListController ecg-list-controller.service.ts is listening for this
             // and adds or deletes the interval from it's contextMenuIntervals .
             // it then re-emits the contextMenuIntervals on the same channel but with
@@ -178,14 +185,14 @@ export class EcgComponent implements OnInit, OnDestroy {
 
             // $event.button 2 is a right mouse button
             // if we are highlighted and get a right click we will open the context menu
-        } else if( $event.button === 2 && this.isEpisodeHighlighted ) {
-			$event.preventDefault();
-			$event.stopPropagation();
-			$event.stopImmediatePropagation();
-			this.listNotifier.send(EcgListChannelKey.CONTEXT_MENU, {
+        } else if ($event.button === 2 && this.isEpisodeHighlighted) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            $event.stopImmediatePropagation();
+            this.listNotifier.send(EcgListChannelKey.CONTEXT_MENU, {
                 action: IEcgListContextMenuAction.OPEN_CONTEXT_MENU,
                 contextMenuClickEvent: $event,
             });
-		}
-	}
+        }
+    }
 }

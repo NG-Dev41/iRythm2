@@ -57,3 +57,44 @@
     height: auto;
     padding: 0 40px;
 }
+
+.gain-control {
+    display: flex;
+    align-items: center;
+}
+
+.gain-container {
+    display: flex;
+    height: 36px;
+    border: 1px solid $gray400;
+    border-radius: 22px;
+}
+
+.decrease-gain-button, .increase-gain-button, .gain-select {
+    border: none;
+    background: none;
+}
+
+.gain-select {
+    appearance: none;
+    border-left: 1px solid $gray400;
+    border-right: 1px solid $gray400;
+    font-size: 16px;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	padding: 0 3px 0 6px;
+	font-family: 'SoehneWebLeicht';
+}
+
+.decrease-gain-button, .increase-gain-button {
+    color: $midnight;
+}
+
+.decrease-gain-button {
+    font-size: 25px;
+    position: relative;
+    bottom: 2px;
+}
+
+
+
